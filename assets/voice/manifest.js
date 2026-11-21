@@ -4,4 +4,5 @@
 window.VOICE_CLIPS = {
   /* Phonics pure sounds (Little Wandle) — key "sound <grapheme>" */
   "sound i": "phonics/i.mp3",
+  "sound p": "phonics/p.mp3",
 };
