@@ -7,4 +7,5 @@ window.VOICE_CLIPS = {
   "sound i": "phonics/i.mp3",
   "sound p": "phonics/p.mp3",
   "sound t": "phonics/t.mp3",
+  "sound s": "phonics/s.mp3",
 };
