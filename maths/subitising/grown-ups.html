@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Subitising — a guide for grown-ups · Charlie's Learning</title>
+<link rel="icon" href="../../assets/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+body{-webkit-user-select:text;user-select:text;}
+#app{max-width:900px;}
+.doc{font-family:'Nunito',system-ui,sans-serif;font-size:18px;line-height:1.6;color:#1e293b;}
+.doc h2{font-family:'Fredoka',sans-serif;color:var(--navy);font-size:28px;margin:0 0 8px;}
+.doc h3{font-family:'Fredoka',sans-serif;color:var(--navy);font-size:21px;margin:16px 0 4px;}
+.card{background:#fff;border-radius:22px;padding:20px 24px;margin:18px 0;box-shadow:0 6px 0 rgba(0,0,0,.07);}
+.lead{font-size:20px;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.box{background:#f4f7ff;border-radius:16px;padding:12px 16px;}
+.box b{color:var(--navy);}
+.dots{display:inline-flex;gap:5px;vertical-align:middle;margin:0 4px;}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--blue);display:inline-block;}
+.dots i.o{background:var(--orange);}
+table{width:100%;border-collapse:collapse;font-size:17px;margin-top:8px;}
+th,td{text-align:left;padding:9px 10px;border-bottom:2px solid #eef2ff;vertical-align:top;}
+th{font-family:'Fredoka',sans-serif;color:var(--navy);background:#f4f7ff;}
+td.lv{font-weight:700;white-space:nowrap;}
+.tag{display:inline-block;border-radius:999px;padding:1px 10px;font-size:14px;font-weight:700;white-space:nowrap;}
+.t-count{background:#dcfce7;color:#166534;} .t-look{background:#dbeafe;color:#1e40af;} .t-five{background:#ffedd5;color:#9a3412;} .t-quick{background:#f3e8ff;color:#6b21a8;}
+ul{padding-left:22px;margin:6px 0;} li{margin:4px 0;}
+.say{background:#fff7d1;border-left:6px solid var(--yellow);border-radius:12px;padding:10px 14px;margin:8px 0;}
+.toolbar{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:4px 0 0;}
+.toolbar .bigbtn{font-size:22px;min-width:auto;padding:12px 22px 16px;}
+.src{font-size:15px;}
+.src a{color:var(--blue);text-decoration:underline;}
+@media (max-width:640px){ .two{grid-template-columns:1fr;} table{font-size:15px;} }
+@media print{
+  .topbar,.toolbar,.grownup{display:none!important;}
+  body{background:#fff!important;}
+  .card{box-shadow:none;border:1px solid #ccc;break-inside:avoid;}
+  .doc{font-family:Georgia,serif;color:#000;}
+  .printhead{display:block!important;}
+}
+.printhead{display:none;font-family:'Fredoka',sans-serif;font-size:14px;color:#555;border-bottom:1px solid #ccc;margin-bottom:10px;}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="topbar">
+    <a class="brick c-red iconbtn" href="index.html" aria-label="Back to worlds">⬅️</a>
+    <h1>👪 For grown-ups</h1>
+    <a class="brick c-yellow iconbtn" href="../../index.html" aria-label="Home">🏠</a>
+  </div>
+  <div class="toolbar">
+    <button class="brick c-blue bigbtn" onclick="try{window.print()}catch(e){}">🖨️ Print this guide</button>
+    <a class="brick c-green bigbtn" href="index.html">🌍 Back to the games</a>
+  </div>
+
+  <div class="doc">
+    <div class="printhead">Charlie's Learning · Subitising — a guide for grown-ups</div>
+
+    <div class="card">
+      <h2>What is subitising?</h2>
+      <p class="lead"><b>Subitising</b> is knowing how many things there are <b>just by looking</b>, without counting them one by one. It's what you do when you glance at a dice and know it's a five. The word comes from the Latin for <i>suddenly</i>.</p>
+      <div class="two">
+        <div class="box"><b>Seeing it straight away</b> (perceptual subitising)<br>
+          Spotting a small amount instantly — <span class="dots"><i></i><i></i><i></i></span> is "three" without counting. This works for amounts <b>up to about 5</b>, for children and adults alike.</div>
+        <div class="box"><b>Seeing it in parts</b> (conceptual subitising)<br>
+          Bigger amounts are seen as smaller groups put together — <span class="dots"><i></i><i></i><i></i><i></i><i></i></span><span class="dots"><i class="o"></i><i class="o"></i></span> is "five and two more, so seven".</div>
+      </div>
+      <p>Seeing numbers as parts that make a whole is one of the biggest steps in early maths. It leads straight into number bonds, adding and taking away.</p>
+    </div>
+
+    <div class="card">
+      <h2>What's expected by the end of Reception?</h2>
+      <p>The Early Years Foundation Stage goal for Number says children at the expected level will:</p>
+      <ul>
+        <li><b>subitise</b> (recognise quantities without counting) <b>up to 5</b></li>
+        <li>have a <b>deep understanding of numbers to 10</b>, including how each number is made — for example, 7 as 5 and 2, or 4 and 3</li>
+        <li>recall number bonds to 5, and some to 10</li>
+      </ul>
+      <p>So in this game, amounts 1–5 are about <b>just seeing</b>, and 6–10 are about <b>seeing five and some more</b>.</p>
+    </div>
+
+    <div class="card">
+      <h2>How the levels build up</h2>
+      <p>The levels follow the advice from NRICH, Third Space Learning and BBC Bitesize: <b>start with small groups (1–3)</b>, then up to 5, and only then bigger numbers seen in parts. At each size there is a <b>look-and-check</b> level, where the picture stays and children can tap to check, followed by a <b>quick look</b>, where it hides so they have to <i>see</i> the number rather than count it.</p>
+      <h3>Game 1 — the Flash game</h3>
+      <table>
+        <tr><th>Level</th><th>Numbers</th><th>What happens</th><th>Why</th></tr>
+        <tr><td class="lv">1</td><td>1–3</td><td><span class="tag t-count">👀 Look &amp; check</span> Dice patterns. The picture stays; tap each one to check.</td><td>Small groups first, in familiar dice patterns.</td></tr>
+        <tr><td class="lv">2</td><td>1–3</td><td><span class="tag t-look">⚡ Quick look</span> Dice patterns, hides after 3 seconds.</td><td>"Just seeing" 1, 2 and 3 — the first step of subitising.</td></tr>
+        <tr><td class="lv">3</td><td>1–5</td><td><span class="tag t-count">👀 Look &amp; check</span> Dice patterns for 4 and 5. The picture stays.</td><td>Most four-year-olds are learning the five-dot pattern.</td></tr>
+        <tr><td class="lv">4</td><td>1–5</td><td><span class="tag t-look">⚡ Quick look</span> New, less tidy layouts. Hides after 3 seconds.</td><td>Subitising up to 5 — the Reception goal — whatever the arrangement.</td></tr>
+        <tr><td class="lv">5</td><td>6–10</td><td><span class="tag t-five">🖐️ Five and more</span> A full five in <b style="color:#2563eb">blue</b>, the rest in <b style="color:#ea580c">orange</b>. Hides after 5 seconds.</td><td>Seeing big numbers in parts: "five and two is seven".</td></tr>
+        <tr><td class="lv">6</td><td>1–10</td><td><span class="tag t-quick">🚀 Super quick</span> Mixed, hides after 2 seconds.</td><td>A challenge once the earlier levels are secure.</td></tr>
+      </table>
+      <h3>Game 2 — Same or Different? &nbsp;·&nbsp; Game 3 — Make It</h3>
+      <p>These never hide the picture. Their levels go 1–3, 1–5, 6–10 and a mix. <b>Same or Different?</b> shows the same amount in different patterns — and often with <b>different things</b> (rockets and stars, or pictures and dots) — so children learn that 4 is still 4 whatever it is and however it's arranged. <b>Make It</b> uses a ten frame (two rows of five), the same tool used in Reception classrooms.</p>
+      <p><b>When to move on:</b> the game marks the next level with a yellow "NEXT" once your child gets 2 or more stars. If they're pointing at and counting each picture on a quick-look level, go back a level — that's completely normal.</p>
+    </div>
+
+    <div class="card">
+      <h2>Pictures or dots?</h2>
+      <p>NRICH points out that <b>everyday objects are harder to subitise than simple dots</b>, but children are often more interested in them. So the game <b>mixes both</b>: most rounds use the theme pictures (stars, rockets, planets), and every few rounds uses plain dots. The answer cards always show dice-style dots, linking the picture to the pattern.</p>
+      <p>You can change this in the grown-ups settings (press and hold the <b>🔒 Grown-ups</b> button in a game): <i>mix</i>, <i>theme pictures only</i> or <i>simple dots only</i>. If your child finds the pictures hard, try dots only for a while.</p>
+    </div>
+
+    <div class="card">
+      <h2>How you can help</h2>
+      <h3>While they play</h3>
+      <div class="say">💬 <b>"How did you know?"</b> or <b>"What did you see?"</b> — the game asks this too. "I saw two and one" is a brilliant answer.</div>
+      <ul>
+        <li>Accept different answers about <i>how</i> they saw it — there's no single right way.</li>
+        <li>If they still count to check, don't worry — it's a hard idea and takes time. Look together and talk about what you both see.</li>
+        <li>Start with long looks. In the grown-ups settings you can set the look time, or choose "Always stay on".</li>
+        <li>If the numbers on the answer cards are new to them, set the cards to "Dots only".</li>
+        <li>Rounds are short (8 questions) with a movement break in the middle. Stopping after a round or two is ideal.</li>
+      </ul>
+      <h3>Away from the screen</h3>
+      <ul>
+        <li><b>Fingers:</b> "Show me 3!" — all at once, not counted up one by one. For bigger numbers: "a whole hand and two more".</li>
+        <li><b>Dice and dominoes:</b> board games like snakes and ladders build instant recognition of dot patterns.</li>
+        <li><b>Quick looks:</b> put a few toys or pasta shapes under a tea towel, lift it for a second, then ask how many.</li>
+        <li><b>Egg-box ten frame:</b> cut two rows of five from an egg box and fill it with small toys — "how many? how many empty?"</li>
+        <li><b>Coloured bricks:</b> put out 3 bricks — 2 blue and 1 red. "Can you see 3 bricks? Can you see 2 blue ones and 1 red one?" This is seeing a number in parts, with toys they already love.</li>
+        <li><b>Out and about:</b> two ducks on a pond, three cars in a row — "how many? no counting!"</li>
+        <li><b>Clap it:</b> clap 3 times and ask how many claps — subitising works for sounds too.</li>
+        <li><b>Use their interests:</b> cars, dinosaurs, stickers — the same skill, with things they love.</li>
+      </ul>
+    </div>
+
+    <div class="card src">
+      <h2>Where this comes from</h2>
+      <ul>
+        <li><a href="https://nrich.maths.org/articles/subitising">NRICH — Subitising</a> (University of Cambridge)</li>
+        <li><a href="https://thirdspacelearning.com/blog/what-is-subitising/">Third Space Learning — What is subitising?</a></li>
+        <li><a href="https://help-for-early-years-providers.education.gov.uk/support-for-practitioners/eyfs-profile-assessment-support/number-early-learning-goal">Department for Education — ELG: Number</a></li>
+        <li><a href="https://www.bbc.co.uk/bitesize/articles/zsjbcmn">BBC Bitesize — What is subitising?</a> (Early Years expert Helen Hickson)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script src="../../assets/site.js"></script>
+</body>
+</html>

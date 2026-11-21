@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Number bonds — a guide for grown-ups · Charlie's Learning</title>
+<link rel="icon" href="../../assets/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+body{-webkit-user-select:text;user-select:text;}
+#app{max-width:900px;}
+.doc{font-family:'Nunito',system-ui,sans-serif;font-size:18px;line-height:1.6;color:#1e293b;}
+.doc h2{font-family:'Fredoka',sans-serif;color:var(--navy);font-size:28px;margin:0 0 8px;}
+.doc h3{font-family:'Fredoka',sans-serif;color:var(--navy);font-size:21px;margin:16px 0 4px;}
+.card{background:#fff;border-radius:22px;padding:20px 24px;margin:18px 0;box-shadow:0 6px 0 rgba(0,0,0,.07);}
+.lead{font-size:20px;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.box{background:#f4f7ff;border-radius:16px;padding:12px 16px;}
+.box b{color:var(--navy);}
+.dots{display:inline-flex;gap:5px;vertical-align:middle;margin:0 4px;}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--blue);display:inline-block;}
+.dots i.o{background:var(--orange);}
+table{width:100%;border-collapse:collapse;font-size:17px;margin-top:8px;}
+th,td{text-align:left;padding:9px 10px;border-bottom:2px solid #eef2ff;vertical-align:top;}
+th{font-family:'Fredoka',sans-serif;color:var(--navy);background:#f4f7ff;}
+td.lv{font-weight:700;white-space:nowrap;}
+.tag{display:inline-block;border-radius:999px;padding:1px 10px;font-size:14px;font-weight:700;white-space:nowrap;}
+.t-count{background:#dcfce7;color:#166534;} .t-look{background:#dbeafe;color:#1e40af;} .t-five{background:#ffedd5;color:#9a3412;} .t-quick{background:#f3e8ff;color:#6b21a8;}
+ul{padding-left:22px;margin:6px 0;} li{margin:4px 0;}
+.say{background:#fff7d1;border-left:6px solid var(--yellow);border-radius:12px;padding:10px 14px;margin:8px 0;}
+.toolbar{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:4px 0 0;}
+.toolbar .bigbtn{font-size:22px;min-width:auto;padding:12px 22px 16px;}
+.src{font-size:15px;}
+.src a{color:var(--blue);text-decoration:underline;}
+@media (max-width:640px){ .two{grid-template-columns:1fr;} table{font-size:15px;} }
+@media print{
+  .topbar,.toolbar,.grownup{display:none!important;}
+  body{background:#fff!important;}
+  .card{box-shadow:none;border:1px solid #ccc;break-inside:avoid;}
+  .doc{font-family:Georgia,serif;color:#000;}
+  .printhead{display:block!important;}
+}
+.printhead{display:none;font-family:'Fredoka',sans-serif;font-size:14px;color:#555;border-bottom:1px solid #ccc;margin-bottom:10px;}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="topbar">
+    <a class="brick c-red iconbtn" href="index.html" aria-label="Back to worlds">⬅️</a>
+    <h1>👪 For grown-ups</h1>
+    <a class="brick c-yellow iconbtn" href="../../index.html" aria-label="Home">🏠</a>
+  </div>
+  <div class="toolbar">
+    <button class="brick c-blue bigbtn" onclick="try{window.print()}catch(e){}">🖨️ Print this guide</button>
+    <a class="brick c-green bigbtn" href="index.html">🌍 Back to the games</a>
+  </div>
+
+  <div class="doc">
+    <div class="printhead">Charlie's Learning · Number bonds — a guide for grown-ups</div>
+    <div class="card">
+      <h2>What are number bonds?</h2>
+      <p class="lead">A number bond is a pair of numbers that make another number — 3 and 2 make 5. Teachers call the bigger idea <b>composition</b>: every number is made up of smaller numbers.</p>
+      <div class="two">
+        <div class="box"><b>Parts and a whole</b><br>When 5 is split into 3 and 2, the 3 is a <i>part</i>, the 2 is a <i>part</i>, and 5 is the <i>whole</i>.</div>
+        <div class="box"><b>All the ways to make 5</b><br>0 and 5 · 1 and 4 · 2 and 3 (and the other way round). Knowing these "by heart" makes adding and taking away much easier later.</div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>What's expected by the end of Reception?</h2>
+      <p>The Early Learning Goal for Number says children will have a deep understanding of numbers to 10, <b>including the composition of each number</b>, and will <b>automatically recall number bonds to 5</b> (including taking-away facts) <b>and some to 10, including doubles</b>.</p>
+    </div>
+    <div class="card">
+      <h2>The four games</h2>
+      <table>
+        <tr><th>Game</th><th>What your child does</th><th>What it builds</th></tr>
+        <tr><td class="lv">🙈 How Many Hiding?</td><td>Sees the whole group, then some hide (in the cave, the kennel, behind the planet…). "3 are out — how many are hiding?"</td><td>The classic early-years hiding game: knowing the missing part from the whole. Wholes of 3–4, then 5, then 6–7, then 10.</td></tr>
+        <tr><td class="lv">🍒 Part, Part, Whole</td><td>The "cherry" model — the whole at the top, two parts below, one missing.</td><td>The same picture schools use. Later levels sometimes ask for the whole instead.</td></tr>
+        <tr><td class="lv">🎨 Two-Colour Frame</td><td>Some are already in (blue). Add more (orange) to make the number.</td><td>Making a number from two parts on a five or ten frame — all the ways to make 5, then 10.</td></tr>
+        <tr><td class="lv">🦋 Doubles</td><td>A mirror shows the same on both sides. "Double 3 is…?"</td><td>Double facts to 10.</td></tr>
+      </table>
+      <p>After each answer the game says the bond out loud — "<b>3 and 2 make 5</b>" — because hearing and saying the facts helps them stick.</p>
+    </div>
+    <div class="card">
+      <h2>How you can help</h2>
+      <h3>While they play</h3>
+      <div class="say">💬 Use the words: <b>"One part is 3, the other part is 2, the whole is 5."</b></div>
+      <ul><li>If they count all the objects one by one, that's fine at first — the aim is that they start to just <i>know</i>.</li>
+          <li>Ask "Is there another way to make 5?"</li></ul>
+      <h3>Away from the screen</h3>
+      <ul>
+        <li><b>Hide and peek:</b> put 5 toys under a tea towel, take some out — "how many are still hiding?"</li>
+        <li><b>Two hands:</b> hold 5 small things, split them between your hands — "3 in this hand, so how many in the other?"</li>
+        <li><b>Egg boxes and ten frames:</b> fill an egg box with two colours of pasta or pom-poms.</li>
+        <li><b>Doubles everywhere:</b> legs on a chair (2 and 2), ladybird spots, socks, dominoes.</li>
+      </ul>
+    </div>
+    <div class="card src">
+      <h2>Where this comes from</h2>
+      <ul>
+        <li><a href="https://ncetm.org.uk/classroom-resources/ey-composition">NCETM — Early Years: Composition</a></li>
+        <li><a href="https://www.ncetm.org.uk/features/exploring-the-composition-of-number/">NCETM — Exploring the composition of number</a></li>
+        <li><a href="https://help-for-early-years-providers.education.gov.uk/support-for-practitioners/eyfs-profile-assessment-support/number-early-learning-goal">Department for Education — ELG: Number</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script src="../../assets/site.js"></script>
+</body>
+</html>

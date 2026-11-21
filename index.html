@@ -4,64 +4,92 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>English · Charlie's Learning</title>
-<link rel="icon" href="../assets/logo.webp">
+<meta name="description" content="Charlie's Learning — playful phonics and maths games for Reception-age children, built for tablets.">
+<title>Charlie's Learning</title>
+<link rel="icon" href="assets/logo.webp">
+<link rel="apple-touch-icon" href="assets/logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="assets/site.css">
 <style>
-.intro{text-align:center;font-size:clamp(17px,2.4vw,22px);margin:0 0 6px;}
-.path{display:flex;flex-direction:column;gap:22px;max-width:760px;margin:10px auto 0;}
-.step{display:flex;align-items:center;gap:18px;padding:18px 20px 22px;min-height:130px;}
-.step .ico{font-size:58px;width:76px;text-align:center;flex:none;}
-.step .n{font-size:15px;font-weight:600;letter-spacing:.5px;opacity:.9;}
-.step .t{font-size:clamp(26px,3.6vw,34px);font-weight:700;line-height:1.1;}
-.step .d{font-size:17px;opacity:.95;margin-top:2px;}
-.step .stars{font-size:18px;letter-spacing:2px;margin-top:4px;}
-.step.soon{cursor:default;} .step.soon:active{transform:none;}
-.go{margin-left:auto;font-size:40px;}
-.logo-mini{width:58px;height:58px;border-radius:50%;background:#fff;overflow:hidden;box-shadow:0 0 0 4px var(--yellow);flex:none;}
-.logo-mini img{width:100%;height:100%;object-fit:cover;}
-.watch{max-width:760px;margin:6px auto 22px;background:#fff;border-radius:26px;padding:16px 16px 18px;box-shadow:0 8px 0 rgba(0,0,0,.08);border:5px solid var(--yellow);}
-.watch .head{display:flex;align-items:center;gap:12px;margin:0 4px 12px;}
-.watch .badge{background:var(--red);color:#fff;font-weight:700;border-radius:12px;padding:4px 12px;font-size:16px;letter-spacing:.5px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.18);}
-.watch .t{font-size:clamp(22px,3.4vw,30px);font-weight:700;line-height:1.1;}
-.watch .len{margin-left:auto;font-size:15px;opacity:.7;white-space:nowrap;}
-.vwrap{position:relative;border-radius:18px;overflow:hidden;background:#cfe8ff;aspect-ratio:16/9;}
-.vwrap video{display:block;width:100%;height:100%;object-fit:cover;}
-.vwrap .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border:0;background:rgba(27,42,107,.18);cursor:pointer;}
-.vwrap .play span{width:110px;height:110px;border-radius:50%;background:var(--red);color:#fff;font-size:52px;display:flex;align-items:center;justify-content:center;padding-left:8px;
-  box-shadow:0 0 0 10px rgba(255,255,255,.7),0 10px 0 rgba(0,0,0,.18);animation:pulsePlay 1.8s ease-in-out infinite;}
-@keyframes pulsePlay{50%{transform:scale(1.08)}}
-.vwrap.playing .play{display:none;}
-.watch .note{font-size:15px;opacity:.75;margin:10px 4px 0;text-align:center;}
-.lwnote{max-width:760px;margin:6px auto 18px;background:#fff;border-radius:22px;padding:14px 18px;font-size:clamp(16px,2.2vw,19px);box-shadow:0 6px 0 rgba(0,0,0,.08);border:4px solid var(--red);line-height:1.4;}
+.home{display:flex;flex-direction:column;align-items:center;gap:16px;}
+.logo-wrap{width:min(60vw,400px);aspect-ratio:1;border-radius:50%;background:#fff;
+  box-shadow:0 0 0 10px #fff,0 0 0 18px var(--yellow),0 14px 0 18px rgba(0,0,0,.08);overflow:hidden;margin:22px 0 14px;}
+.logo-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+@media (orientation:landscape) and (max-height:820px){ .logo-wrap{width:min(30vh,260px);} .subject .brickimg{max-width:min(340px,40vh);} }
+.tagline{font-size:clamp(18px,2.6vw,24px);text-align:center;margin:0;}
+.subjects{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,4vw,48px);width:100%;max-width:900px;margin-top:6px;}
+/* each subject is a big toy brick you can press */
+.subject{display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent;}
+.subject .brickimg{width:100%;max-width:400px;aspect-ratio:700/457;background:center/contain no-repeat;
+  filter:drop-shadow(0 14px 0 rgba(27,42,107,.10)) drop-shadow(0 18px 22px rgba(27,42,107,.22));
+  animation:brickFloat 3.6s ease-in-out infinite;transition:transform .15s;}
+.subject:nth-child(2) .brickimg{animation-delay:-1.8s;}
+@keyframes brickFloat{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-10px) rotate(1.5deg)}}
+.subject:hover .brickimg{animation-play-state:paused;transform:translateY(-14px) scale(1.04) rotate(-2deg);}
+.subject:active .brickimg{animation:none;transform:translateY(6px) scale(.96);filter:drop-shadow(0 4px 0 rgba(27,42,107,.12)) drop-shadow(0 8px 10px rgba(27,42,107,.2));}
+.subject .label{display:flex;flex-direction:column;align-items:center;padding:10px 30px 12px;border-radius:22px;color:#fff;
+  box-shadow:inset 0 -6px 0 rgba(0,0,0,.18), 0 6px 0 rgba(0,0,0,.08);min-width:62%;}
+.subject .t{font-size:clamp(28px,4.4vw,42px);font-weight:700;line-height:1.1;text-shadow:0 2px 0 rgba(0,0,0,.18);}
+.subject .s{font-size:clamp(14px,2vw,18px);opacity:.95;}
+.subject.maths .label{background:#e3262f;} .subject.english .label{background:#1d6fd8;}
+.wrap{width:100%;max-width:860px;}
+.grown{background:#fff;border-radius:22px;box-shadow:0 6px 0 rgba(0,0,0,.08);margin-top:10px;overflow:hidden;}
+.grown > summary{list-style:none;display:flex;align-items:center;justify-content:space-between;padding:16px 22px;font-size:22px;font-weight:700;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.grown summary::-webkit-details-marker{display:none;}
+.grown .chev{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:#f4f7ff;transition:transform .25s;font-size:18px;}
+.grown[open] > summary .chev{transform:rotate(180deg);}
+.grown .acc{padding:0 16px 16px;display:flex;flex-direction:column;gap:8px;}
+.acc details{background:#f4f7ff;border-radius:14px;}
+.acc summary{list-style:none;padding:12px 16px;font-weight:700;font-size:17px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.acc summary::after{content:"+";font-size:22px;line-height:1;color:#5a6aa8;}
+.acc details[open] summary::after{content:"–";}
+.acc p{margin:0;padding:0 16px 14px;font-size:16px;line-height:1.45;}
+/* tower card: stack the label above the bricks on narrow screens */
+@media (max-width:620px){ .tower-card{flex-direction:column;align-items:flex-start;} }
+@media (max-width:620px){ .subjects{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
 <div id="app">
-  <div class="topbar">
-    <a class="brick c-red iconbtn" href="../index.html" aria-label="Home" onclick="sfx.click()">🏠</a>
-    <h1>🔤 English</h1>
-    <a class="logo-mini" href="../index.html"><img src="../assets/logo.webp" alt="Charlie's Learning"></a>
+  <div class="home fade-in">
+    <div class="logo-wrap"><img src="assets/logo.webp" alt="Charlie's Learning logo"></div>
+    <p class="tagline">Play, learn and build — one brick at a time 🧱</p>
+    <div class="subjects">
+      <a class="subject maths" href="maths/index.html" onclick="sfx.click();speak('Maths')" aria-label="Maths">
+        <div class="brickimg" style="background-image:url(assets/brick-maths.webp)"></div>
+        <div class="label"><div class="t">Maths</div><div class="s">See it · count it · make it</div></div>
+      </a>
+      <a class="subject english" href="english/index.html" onclick="sfx.click();speak('English')" aria-label="English">
+        <div class="brickimg" style="background-image:url(assets/brick-english.webp)"></div>
+        <div class="label"><div class="t">English</div><div class="s">Sounds · reading · spelling</div></div>
+      </a>
+    </div>
+    <div class="tower-card wrap">
+      <div class="lbl">🏗️ <span id="nm1">Charlie</span>'s tower<br><span style="font-size:15px;font-weight:500" id="cnt"></span></div>
+      <div class="tower" id="tower"></div>
+    </div>
+    <details class="grown wrap" id="grown">
+      <summary><span>👪 For grown-ups</span><span class="chev">▾</span></summary>
+      <div class="acc">
+        <details><summary>Foundations first</summary><p>Each subject starts with the building blocks Reception teachers focus on — subitising in maths, and phonics in the same order as school (Little Wandle) for English.</p></details>
+        <details><summary>Short, playful rounds</summary><p>Rounds are 8 questions with a "brick break" halfway that gets children moving away from the screen.</p></details>
+        <details><summary>Talk about it</summary><p>Ask "How did you know?" when they answer — explaining what they saw builds real number sense.</p></details>
+        <details><summary>No computer voice</summary><p>Children read the screen with you and say sounds themselves, as they do in class. Settings are behind the 🔒 in the corner — press and hold.</p></details>
+      </div>
+    </details>
   </div>
-  <div class="lwnote fade-in"><b>📚 Same order as school.</b> The sounds and tricky words follow Little Wandle Letters and Sounds Revised, week by week through Reception — pick the level that matches what your child has learned in class.</div>
-  <div class="bpath fade-in">
-    <a class="bstep" href="phonics/index.html" onclick="sfx.click();speak('Phonics')" aria-label="Phonics">
-      <div class="bimg" style="background-image:url(../assets/bricks/phonics.webp)"></div>
-      <div class="bcap"><span>Sound Spotter · Read It · Spell It · Tricky Words</span><span class="stars" id="st1"></span></div>
-    </a>
-    <a class="bstep small" href="phonics/grown-ups.html" onclick="sfx.click()" aria-label="Grown-ups guide">
-      <div class="bimg" style="background-image:url(../assets/bricks/grownups.webp)"></div>
-      <div class="bcap"><span>How phonics works, and which level to choose</span></div>
-    </a>
-  </div>
+  <footer>Charlie's Learning · made for little learners</footer>
 </div>
-<script src="../assets/site.js"></script>
+<script src="assets/site.js"></script>
 <script>
-const best = Math.max(0, ...Object.keys(progress).filter(k=>k.startsWith('phw:')).map(k=>progress[k]));
-if(best) $('#st1').textContent = starsTxt(best);
-grownupButton();
+function renderHome(){
+  $('#nm1').textContent = settings.name;
+  $('#cnt').textContent = tower.length + ' brick' + (tower.length===1?'':'s');
+  $('#tower').innerHTML = towerHTML();
+}
+window.onSettingsClosed = renderHome;
+renderHome(); grownupButton();
 </script>
 </body>
 </html>

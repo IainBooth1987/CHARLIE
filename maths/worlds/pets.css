@@ -1,0 +1,19 @@
+/* World pack: Pets with Cooper — theme used by every maths skill */
+/* Pets theme — warm and cosy, with Cooper's tartan jumper colours */
+:root{
+  --bg1:#fff3e0; --bg2:#ffd8a6; --text:#3a2416; --muted:rgba(58,36,22,.78);
+  --panel:rgba(255,255,255,.66); --panelLine:rgba(196,112,52,.45); --glow:#ffb36b; --accent:#d32f2f; --accent2:#1f2a5a;
+  --plate:#2d3b78; --plateLine:rgba(255,255,255,.08);
+  --objGlow:drop-shadow(0 4px 0 rgba(90,47,24,.22));
+  --shutter1:#d32f2f; --shutter2:#1f2a5a;
+}
+body.world{background:radial-gradient(1200px 700px at 70% 0%, var(--bg2), var(--bg1));}
+.world .topbar h1{text-shadow:0 2px 0 rgba(255,255,255,.8);}
+.cell{background:rgba(255,255,255,.65);border-color:rgba(150,80,30,.35);}
+.cell.on{background:#fff;border-color:#d32f2f;box-shadow:0 0 0 3px rgba(211,47,47,.2);}
+.ans .num{text-shadow:none;color:#1f2a5a;}
+.lv .mode{background:rgba(150,80,30,.12);}
+.target{color:#d32f2f;text-shadow:0 3px 0 rgba(31,42,90,.25);}
+.tip{color:#3a2416;}
+#intro .sub{text-shadow:0 2px 6px rgba(0,0,0,.6);}
+#intro h1{text-shadow:0 4px 0 #1f2a5a,0 0 30px rgba(255,255,255,.6);}

@@ -1,0 +1,13 @@
+/* World pack: Under the Sea — theme used by every maths skill */
+/* Under the Sea theme — deep blues and teal light */
+:root{
+  --bg1:#021a30; --bg2:#0b5b8a; --text:#ffffff; --muted:rgba(220,245,255,.85);
+  --panel:rgba(160,220,255,.11); --panelLine:rgba(150,225,255,.42); --glow:#7fe3ff; --accent:#14b8c4; --accent2:#3b82f6;
+  --plate:#0d3b66; --plateLine:rgba(255,255,255,.07);
+  --objGlow:drop-shadow(0 4px 0 rgba(0,0,0,.35)) drop-shadow(0 0 10px rgba(127,227,255,.4));
+  --shutter1:#1e88c8; --shutter2:#0b4f86;
+}
+.shutter .door{background:
+  repeating-radial-gradient(circle at 50% 120%, #1e88c8 0 16px, #1673ad 16px 32px)!important;}
+#intro .sub{text-shadow:0 2px 6px rgba(0,0,0,.7);}
+#intro h1{color:#ffe14d;text-shadow:0 5px 0 #0b4f86,0 0 30px rgba(127,227,255,.7);}

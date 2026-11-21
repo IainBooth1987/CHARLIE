@@ -1,0 +1,8 @@
+/* Phonics world: Monsters — twilight Monster Meadow */
+:root{
+  --bg1:#2e1065; --bg2:#7e22ce; --text:#ffffff; --muted:rgba(250,232,255,.9);
+  --panel:rgba(255,255,255,.12); --panelLine:rgba(244,114,182,.6); --glow:#f0abfc; --accent:#22c55e; --accent2:#f472b6;
+  --plate:#4c1d95; --plateLine:rgba(255,255,255,.08);
+  --objGlow:drop-shadow(0 0 10px rgba(244,114,182,.45));
+  --shutter1:#22c55e; --shutter2:#15803d;
+}

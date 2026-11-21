@@ -1,0 +1,9 @@
+/* World pack: Space — theme used by every maths skill */
+/* Space theme */
+:root{
+  --bg1:#050818; --bg2:#1d1660; --text:#eef2ff; --muted:rgba(225,232,255,.78);
+  --panel:rgba(120,140,255,.10); --panelLine:rgba(150,175,255,.38); --glow:#7aa7ff; --accent:#4f7dff; --accent2:#b46bff;
+  --plate:#332f86; --plateLine:rgba(255,255,255,.07);
+  --objGlow:drop-shadow(0 0 6px rgba(255,236,150,.95)) drop-shadow(0 0 16px rgba(255,210,90,.55));
+  --shutter1:#5260d6; --shutter2:#2a2f8f;
+}

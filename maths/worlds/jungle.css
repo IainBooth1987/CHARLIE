@@ -1,0 +1,14 @@
+/* World pack: Jungle — theme used by every maths skill */
+/* Jungle theme — deep greens, sunbeams, leafy edges */
+:root{
+  --bg1:#062a16; --bg2:#14532d; --text:#ffffff; --muted:rgba(230,255,236,.85);
+  --panel:rgba(255,255,255,.11); --panelLine:rgba(190,255,200,.42); --glow:#a3f7b5; --accent:#22c55e; --accent2:#f59e0b;
+  --plate:#1d5a32; --plateLine:rgba(255,255,255,.07);
+  --objGlow:drop-shadow(0 4px 0 rgba(0,0,0,.35)) drop-shadow(0 0 10px rgba(255,240,150,.35));
+  --shutter1:#3f9a3a; --shutter2:#1b5e20;
+}
+.shutter .door{background:
+  radial-gradient(ellipse 22px 12px at 30% 30%, rgba(255,255,255,.12), transparent 70%),
+  repeating-linear-gradient(60deg, #2f8a35 0 18px, #23702a 18px 36px)!important;}
+#intro .sub{text-shadow:0 2px 6px rgba(0,0,0,.7);}
+#intro h1{color:#ffe14d;text-shadow:0 5px 0 #1b5e20,0 0 30px rgba(255,225,77,.6);}

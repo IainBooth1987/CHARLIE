@@ -1,0 +1,8 @@
+/* Phonics world: Trains — sunny countryside railway */
+:root{
+  --bg1:#3b82c4; --bg2:#7cc4f2; --text:#ffffff; --muted:rgba(240,248,255,.9);
+  --panel:rgba(20,50,110,.30); --panelLine:rgba(255,255,255,.55); --glow:#fff3b0; --accent:#e3262f; --accent2:#f59e0b;
+  --plate:#1e4f8f; --plateLine:rgba(255,255,255,.12);
+  --objGlow:drop-shadow(0 4px 0 rgba(0,0,0,.25));
+  --shutter1:#e3262f; --shutter2:#991b1b;
+}

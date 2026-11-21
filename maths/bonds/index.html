@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Number bonds · Pick your world · Charlie's Learning</title>
+<link rel="icon" href="../../assets/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+body{
+  background:linear-gradient(135deg,#dff1ff 0%,#efe6ff 50%,#ffeef6 100%);
+  background-size:300% 300%; animation:bgshift 18s ease infinite;
+}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;
+  background-image:radial-gradient(circle, rgba(255,255,255,.75) 0 8px, transparent 9px);background-size:40px 40px;opacity:.6;}
+@keyframes bgshift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+#app{position:relative;}
+.intro{text-align:center;font-size:clamp(17px,2.4vw,22px);margin:0 0 10px;}
+.worlds{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:22px;}
+.world{position:relative;border-radius:26px;padding:18px 12px 16px;min-height:200px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  color:#fff;text-align:center;overflow:hidden;isolation:isolate;
+  background:linear-gradient(160deg,var(--a),var(--b));
+  box-shadow:0 10px 0 rgba(0,0,0,.14), 0 18px 30px -12px var(--b), inset 0 2px 0 rgba(255,255,255,.35);
+  transition:transform .18s;}
+.world:active{transform:translateY(5px) scale(.98);}
+.world::after{content:"";position:absolute;top:-60%;left:-60%;width:60%;height:220%;transform:rotate(25deg);z-index:-1;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);animation:shine 4.5s ease-in-out infinite;animation-delay:var(--d);}
+@keyframes shine{0%,70%{left:-60%}100%{left:140%}}
+.world .ic{font-size:78px;line-height:1;filter:drop-shadow(0 8px 10px rgba(0,0,0,.25));animation:float 3.2s ease-in-out infinite;animation-delay:var(--d);}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(3deg)}}
+.world .ic .ph{width:84px;height:84px;border-radius:50%;object-fit:cover;border:4px solid #fff;display:block;}
+.world .t{font-size:24px;font-weight:700;text-shadow:0 2px 0 rgba(0,0,0,.18);}
+.world .row3{font-size:22px;letter-spacing:3px;background:rgba(255,255,255,.22);border-radius:999px;padding:2px 12px;}
+.world.soon{filter:saturate(.35) brightness(1.05);cursor:default;}
+.world.soon:active{transform:none;}
+.world .tag{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.92);color:#1b2a6b;font-size:13px;font-weight:700;border-radius:10px;padding:2px 9px;}
+.world .live{background:#22c55e;color:#fff;box-shadow:0 0 0 0 rgba(34,197,94,.7);animation:pulse 1.8s infinite;}
+@keyframes pulse{70%{box-shadow:0 0 0 12px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+.stars{font-size:16px;letter-spacing:2px;color:#ffe27a;text-shadow:0 1px 0 rgba(0,0,0,.25);min-height:18px;}
+@media (prefers-reduced-motion:reduce){ *{animation:none!important} }
+.world.hasart{padding:0 0 12px;justify-content:flex-start;gap:4px;}
+.world .art{width:100%;aspect-ratio:3/2;background:center/cover no-repeat;border-bottom:4px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;transition:transform .4s;}
+.world:hover .art{transform:scale(1.04);}
+.world .art .ph{width:112px;height:112px;border-radius:50%;object-fit:cover;border:5px solid #fff;box-shadow:0 8px 18px rgba(0,0,0,.3);animation:float 3.2s ease-in-out infinite;}
+.world.hasart .t{margin-top:6px;}
+.worlds{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="topbar">
+    <a class="brick c-red iconbtn" href="../index.html" onclick="sfx.click()" aria-label="Back to Maths">⬅️</a>
+    <h1>Pick your world!</h1>
+    <a class="brick c-yellow iconbtn" href="../../index.html" onclick="sfx.click()" aria-label="Home">🏠</a>
+  </div>
+  <p class="intro">🧩 <b>Number bonds</b> — two parts make a whole. Every world has the same four games.</p>
+  <div class="worlds" id="worlds"></div>
+  <div style="text-align:center;margin-top:26px">
+    <a class="bstep small" href="grown-ups.html" onclick="sfx.click()" aria-label="Grown-ups guide" style="margin-top:6px">
+      <div class="bimg" style="background-image:url(../../assets/bricks/grownups.webp)"></div>
+      <div class="bcap"><span>How number bonds work and how to help</span></div>
+    </a>
+  </div>
+</div>
+<script src="../../assets/site.js"></script>
+<script>
+/* World list — set file: when a world's HTML is built and it goes live */
+const WORLDS = [
+  {id:'space',    name:'Space',         art:'../worlds/media/space-art.webp', icon:'🚀', items:'🚀⭐🪐', a:'#3b3ab8', b:'#16124a', file:'space.html'},
+  {id:'diggers',  name:'Building Site', art:'../worlds/media/diggers-art.webp', icon:'🏗️', items:'🚜🚚🧱', a:'#fbbf24', b:'#d97706', file:'diggers.html'},
+  {id:'ocean',    name:'Under the Sea', art:'../worlds/media/ocean-art.webp', icon:'🐠', items:'🐠🐙🐚', a:'#38bdf8', b:'#0e7490', file:'ocean.html'},
+  {id:'football', name:'Football',      art:'../worlds/media/football-art.webp', icon:'⚽', items:'⚽🏆👟', a:'#34d399', b:'#047857', file:'football.html'},
+  {id:'jungle',   name:'Jungle',        art:'../worlds/media/jungle-art.webp', icon:'🦁', items:'🦁🐵🍌', a:'#facc15', b:'#a16207', file:'jungle.html'},
+  {id:'pets',     name:'Pets with Cooper', icon:'🐶', art:'../worlds/media/pets-art.webp', items:'🦴🐱🐰', a:'#f59e8b', b:'#b91c1c', file:'pets.html'}
+];
+const best = id => Math.max(0, ...Object.keys(progress).filter(k=>k.startsWith('bndw:'+id+':')).map(k=>progress[k]));
+/* worlds that are ready come first */
+const ORDERED = [...WORLDS.filter(w=>w.file), ...WORLDS.filter(w=>!w.file)];
+$('#worlds').innerHTML = ORDERED.map((w,i)=>{
+  const live = !!w.file, b = best(w.id), hasArt = !!(w.art||w.img);
+  const inner = `<span class="tag ${live?'live':''}">${live?'PLAY':'Coming soon'}</span>
+    ${(w.art||w.img) ? `<div class="art" style="${w.art?`background-image:url(${w.art})`:''}">${w.img?`<img class="ph" src="${w.img}" alt="">`:''}</div>` : `<div class="ic">${w.icon}</div>`}<div class="t">${w.name}</div><div class="row3">${[...w.items].filter(c=>c.trim()).join('')}</div>
+    <div class="stars">${b?starsTxt(b):''}</div>`;
+  const style = `--a:${w.a};--b:${w.b};--d:${(i*.37)%3}s`;
+  return live
+    ? `<a class="world ${hasArt?'hasart':''}" href="${w.file}" style="${style}" onclick="sfx.click();speak('${w.name}!')">${inner}</a>`
+    : `<div class="world soon" style="${style}" onclick="speak('${w.name} is coming soon!')">${inner}</div>`;
+}).join('');
+grownupButton();
+</script>
+</body>
+</html>

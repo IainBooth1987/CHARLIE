@@ -1,0 +1,12 @@
+/* World pack: Football — theme used by every maths skill */
+/* Football theme — floodlit pitch */
+:root{
+  --bg1:#0c3b1d; --bg2:#1f7a3a; --text:#ffffff; --muted:rgba(240,255,244,.85);
+  --panel:rgba(255,255,255,.12); --panelLine:rgba(255,255,255,.45); --glow:#b6ffcb; --accent:#22c55e; --accent2:#e3262f;
+  --plate:#1f8a43; --plateLine:rgba(255,255,255,.16);
+  --objGlow:drop-shadow(0 4px 0 rgba(0,0,0,.28)) drop-shadow(0 0 10px rgba(255,255,255,.35));
+  --shutter1:#e3262f; --shutter2:#a3121a;
+}
+#intro .goaltxt{font-size:clamp(80px,18vw,200px);color:#ffd84d;-webkit-text-stroke:4px #a3121a;text-shadow:0 8px 0 #a3121a,0 0 60px rgba(255,216,77,.9);animation:goalPop .6s cubic-bezier(.2,1.8,.4,1), goalShake .5s .6s ease-in-out 3;}
+@keyframes goalPop{from{transform:scale(0) rotate(-20deg)}to{transform:scale(1)}}
+@keyframes goalShake{50%{transform:scale(1.08) rotate(3deg)}}

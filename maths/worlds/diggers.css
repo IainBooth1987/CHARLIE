@@ -1,0 +1,21 @@
+/* World pack: Building Site — theme used by every maths skill */
+/* Building site theme — sunny site, hazard stripes, tarmac plates */
+:root{
+  --bg1:#fff6d6; --bg2:#ffd76a; --text:#2a2418; --muted:rgba(42,36,24,.78);
+  --panel:rgba(255,255,255,.72); --panelLine:rgba(180,120,0,.45); --glow:#ffc400; --accent:#f59e0b; --accent2:#e3262f;
+  --plate:#3d4450; --plateLine:rgba(255,255,255,.07);
+  --objGlow:drop-shadow(0 4px 0 rgba(0,0,0,.35));
+  --shutter1:#ffcd00; --shutter2:#1b1b1b;
+}
+body.world{background:linear-gradient(180deg,#bfe6ff 0%, #fff1c4 55%, #f3cf86 100%);}
+.world .topbar h1{text-shadow:0 2px 0 rgba(255,255,255,.8);}
+.shutter .door{background:repeating-linear-gradient(45deg,#ffcd00 0 22px,#1b1b1b 22px 44px)!important;}
+.shutter .q{color:#1b1b1b;}
+.cell{background:rgba(255,255,255,.14);border-color:rgba(255,205,0,.55);}
+.cell.on{background:rgba(255,255,255,.22);border-color:#ffcd00;}
+.ans .num{text-shadow:none;color:#2a2418;}
+.lv .mode{background:rgba(180,120,0,.15);}
+.target{color:#ea580c;text-shadow:0 3px 0 rgba(0,0,0,.18);}
+.tip{color:#2a2418;}
+#intro .sub{text-shadow:0 2px 6px rgba(0,0,0,.6);}
+#intro h1{text-shadow:0 5px 0 #1b1b1b,0 0 30px rgba(255,205,0,.7);color:#ffcd00;}

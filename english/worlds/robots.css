@@ -1,0 +1,8 @@
+/* Phonics world: Robots — night-shift robot factory */
+:root{
+  --bg1:#0b1226; --bg2:#1e2a4a; --text:#ffffff; --muted:rgba(200,225,255,.88);
+  --panel:rgba(34,211,238,.10); --panelLine:rgba(34,211,238,.55); --glow:#67e8f9; --accent:#22d3ee; --accent2:#f472b6;
+  --plate:#14213d; --plateLine:rgba(34,211,238,.12);
+  --objGlow:drop-shadow(0 0 10px rgba(34,211,238,.45));
+  --shutter1:#3b82f6; --shutter2:#1e3a8a;
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Counting — a guide for grown-ups · Charlie's Learning</title>
+<link rel="icon" href="../../assets/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+body{-webkit-user-select:text;user-select:text;}
+#app{max-width:900px;}
+.doc{font-family:'Nunito',system-ui,sans-serif;font-size:18px;line-height:1.6;color:#1e293b;}
+.doc h2{font-family:'Fredoka',sans-serif;color:var(--navy);font-size:28px;margin:0 0 8px;}
+.doc h3{font-family:'Fredoka',sans-serif;color:var(--navy);font-size:21px;margin:16px 0 4px;}
+.card{background:#fff;border-radius:22px;padding:20px 24px;margin:18px 0;box-shadow:0 6px 0 rgba(0,0,0,.07);}
+.lead{font-size:20px;}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.box{background:#f4f7ff;border-radius:16px;padding:12px 16px;}
+.box b{color:var(--navy);}
+.dots{display:inline-flex;gap:5px;vertical-align:middle;margin:0 4px;}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--blue);display:inline-block;}
+.dots i.o{background:var(--orange);}
+table{width:100%;border-collapse:collapse;font-size:17px;margin-top:8px;}
+th,td{text-align:left;padding:9px 10px;border-bottom:2px solid #eef2ff;vertical-align:top;}
+th{font-family:'Fredoka',sans-serif;color:var(--navy);background:#f4f7ff;}
+td.lv{font-weight:700;white-space:nowrap;}
+.tag{display:inline-block;border-radius:999px;padding:1px 10px;font-size:14px;font-weight:700;white-space:nowrap;}
+.t-count{background:#dcfce7;color:#166534;} .t-look{background:#dbeafe;color:#1e40af;} .t-five{background:#ffedd5;color:#9a3412;} .t-quick{background:#f3e8ff;color:#6b21a8;}
+ul{padding-left:22px;margin:6px 0;} li{margin:4px 0;}
+.say{background:#fff7d1;border-left:6px solid var(--yellow);border-radius:12px;padding:10px 14px;margin:8px 0;}
+.toolbar{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:4px 0 0;}
+.toolbar .bigbtn{font-size:22px;min-width:auto;padding:12px 22px 16px;}
+.src{font-size:15px;}
+.src a{color:var(--blue);text-decoration:underline;}
+@media (max-width:640px){ .two{grid-template-columns:1fr;} table{font-size:15px;} }
+@media print{
+  .topbar,.toolbar,.grownup{display:none!important;}
+  body{background:#fff!important;}
+  .card{box-shadow:none;border:1px solid #ccc;break-inside:avoid;}
+  .doc{font-family:Georgia,serif;color:#000;}
+  .printhead{display:block!important;}
+}
+.printhead{display:none;font-family:'Fredoka',sans-serif;font-size:14px;color:#555;border-bottom:1px solid #ccc;margin-bottom:10px;}
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="topbar">
+    <a class="brick c-red iconbtn" href="index.html" aria-label="Back to worlds">⬅️</a>
+    <h1>👪 For grown-ups</h1>
+    <a class="brick c-yellow iconbtn" href="../../index.html" aria-label="Home">🏠</a>
+  </div>
+  <div class="toolbar">
+    <button class="brick c-blue bigbtn" onclick="try{window.print()}catch(e){}">🖨️ Print this guide</button>
+    <a class="brick c-green bigbtn" href="index.html">🌍 Back to the games</a>
+  </div>
+
+  <div class="doc">
+    <div class="printhead">Charlie's Learning · Counting — a guide for grown-ups</div>
+
+    <div class="card">
+      <h2>What's really going on when children count?</h2>
+      <p class="lead">Saying "one, two, three…" is only part of counting. Researchers Gelman and Gallistel described the big ideas children need to put together. Each game here practises one of them:</p>
+      <div class="two">
+        <div class="box"><b>One for each thing</b> (one-to-one)<br>Every object gets exactly one number — no skipping, no counting twice.</div>
+        <div class="box"><b>Same order every time</b> (stable order)<br>The number words always go one, two, three… in the same order.</div>
+        <div class="box"><b>The last number tells you how many</b> (cardinal)<br>After counting 1-2-3-4-5, "five" is the answer to "how many?" — this is the big milestone.</div>
+        <div class="box"><b>Count anything, in any order</b><br>Toys, claps, steps or jumps can all be counted, and starting somewhere else gives the same total.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>What's expected in Reception?</h2>
+      <p>Development Matters (the Department for Education's guidance for Reception) says children will be learning to:</p>
+      <ul>
+        <li><b>count objects, actions and sounds</b></li>
+        <li><b>count beyond ten</b></li>
+        <li>link the number symbol (numeral) with how many it stands for</li>
+      </ul>
+      <p>By the end of Reception, the Early Learning Goal is to <b>verbally count beyond 20</b>, recognising the pattern of the counting system.</p>
+    </div>
+
+    <div class="card">
+      <h2>The four games</h2>
+      <table>
+        <tr><th>Game</th><th>What your child does</th><th>What it builds</th></tr>
+        <tr><td class="lv">👆 Count &amp; Tap</td><td>Taps each picture once — it gets a number as they count. Then: "So how many altogether?"</td><td>One-to-one and the "last number tells you how many" idea. Levels go 1–5, 1–10, 6–10, then <b>beyond ten</b> to 20.</td></tr>
+        <tr><td class="lv">🧺 Count Out</td><td>"Put 6 stars in the space bag" — taking just the right number from a bigger pile, and stopping.</td><td>Counting out a number (harder than counting what's there — you have to remember the target and stop).</td></tr>
+        <tr><td class="lv">🥁 Count the Beats</td><td>Listens to drum beats (the mascot bounces on each one) and says how many.</td><td>Counting sounds and actions — things you can't touch or line up.</td></tr>
+        <tr><td class="lv">🔢 What Comes Next?</td><td>Fills in the next number, or a missing one, on a track of number bricks up to 20.</td><td>The counting order, and the pattern of the teen numbers.</td></tr>
+      </table>
+      <p><b>When to move on:</b> the yellow "NEXT" moves along once your child gets 2 or more stars on a level.</p>
+    </div>
+
+    <div class="card">
+      <h2>How you can help</h2>
+      <h3>While they play</h3>
+      <div class="say">💬 After they count: <b>"So how many are there?"</b> If they count again from the start, that's normal — say "you said five last, so there are five!"</div>
+      <ul>
+        <li>Encourage touching or tapping each one — and moving counted things to one side helps them keep track.</li>
+        <li>Let them count in any order; the answer stays the same.</li>
+        <li>Count the beats together out loud at first, then let them try quietly.</li>
+      </ul>
+      <h3>Away from the screen</h3>
+      <ul>
+        <li><b>Count everything:</b> stairs as you climb, grapes on the plate, jumps on the trampoline.</li>
+        <li><b>"Give me…":</b> "Can you give me 4 spoons?" is the real-life version of Count Out.</li>
+        <li><b>Claps and jumps:</b> "How many claps did I do?", "Do 5 jumps!"</li>
+        <li><b>Count past ten:</b> count down from 20 at bath time, or count steps on a walk — pause at 10 and 20 to notice the pattern.</li>
+        <li><b>Hide and seek:</b> counting to 20 while hiding your eyes is perfect practice.</li>
+      </ul>
+    </div>
+
+    <div class="card src">
+      <h2>Where this comes from</h2>
+      <ul>
+        <li><a href="https://prek-math-te.stanford.edu/system/files/media/document/2017/The%20Principal%20Counting%20Principles.pdf">The principal counting principles</a> (Gelman &amp; Gallistel, 1978)</li>
+        <li><a href="https://assets.publishing.service.gov.uk/media/64e6002a20ae890014f26cbc/DfE_Development_Matters_Report_Sep2023.pdf">Department for Education — Development Matters</a></li>
+        <li><a href="https://www.ncetm.org.uk/in-the-classroom/early-years/">NCETM — Early years maths</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<script src="../../assets/site.js"></script>
+</body>
+</html>
