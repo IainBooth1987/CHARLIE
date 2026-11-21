@@ -2,4 +2,6 @@
    Each entry maps the exact line (as written in the script) to an audio file in this folder.
    Lines without a recording are shown as captions only in the 3D intros. */
 window.VOICE_CLIPS = {
+  /* Phonics pure sounds (Little Wandle) — key "sound <grapheme>" */
+  "sound i": "phonics/i.mp3",
 };
