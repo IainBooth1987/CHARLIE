@@ -274,7 +274,7 @@ window.WORLD = {
 
     function frame(now){
       raf = requestAnimationFrame(frame);
-      const k = Math.min(6, (now-last)/16.67); last = now; t += k/60; phaseT += k/60;
+      const k = Math.min(6, (now-last)/16.67)*(window.INTRO_SPEED||1); last = now; t += k/60; phaseT += k/60;
       waterTex.offset.y += .0025*k;
       mSwing.rotation.z = Math.sin(t*1.8)*.35;
       wings.forEach((w,i)=>w.rotation.z = (i?-1:1)*(focus && focus.obj===parrot ? .4+Math.abs(Math.sin(t*14))*.9 : .05));

@@ -174,7 +174,7 @@ window.WORLD = {
 
     function frame(now){
       raf = requestAnimationFrame(frame);
-      const k = Math.min(6, (now-last)/16.67); last = now; t += k/60; phaseT += k/60;
+      const k = Math.min(6, (now-last)/16.67)*(window.INTRO_SPEED||1); last = now; t += k/60; phaseT += k/60;
       // keeper shuffles on the line
       if(phase!=='shot' && phase!=='goal' && phase!=='finale'){ keeper.g.position.x = Math.sin(t*1.6)*1.2; runAnim(keeper, .12, k); }
 

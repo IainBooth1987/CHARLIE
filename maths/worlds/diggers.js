@@ -251,7 +251,7 @@ window.WORLD = {
 
     function frame(now){
       raf = requestAnimationFrame(frame);
-      const k = Math.min(6, (now-last)/16.67); last = now; t += k/60; phaseT += k/60;
+      const k = Math.min(6, (now-last)/16.67)*(window.INTRO_SPEED||1); last = now; t += k/60; phaseT += k/60;
       jibPv.rotation.y = Math.sin(t*.18)*.9; hookBrick.rotation.y = Math.sin(t*.7)*.3;
       hookBrick.position.y = -5.3 + Math.sin(t*.8)*1.6; rope.scale.y = 1 + Math.sin(t*.8)*-.32; rope.position.y = -2.5 + Math.sin(t*.8)*.8;
       { const ph = (t*.5)%2, f = ph<1 ? ph : 2-ph; dozer.position.x = dozerHome.x - f*1.6; dzPile.position.x = dozer.position.x - 2.6 - (1-f)*.1; dzPile.scale.x = 1.1 + f*.5; }

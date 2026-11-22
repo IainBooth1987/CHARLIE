@@ -225,7 +225,7 @@ window.WORLD = {
 
     function frame(now){
       raf = requestAnimationFrame(frame);
-      const k = Math.min(6, (now-last)/16.67); last = now; t += k/60; phaseT += k/60;
+      const k = Math.min(6, (now-last)/16.67)*(window.INTRO_SPEED||1); last = now; t += k/60; phaseT += k/60;
       prop.rotation.z += (phase==='idle' ? .08 : .3)*k;
       weeds.forEach(w=>w.pv.rotation.z = Math.sin(t*1.1 + w.p + w.i*.5)*.12);
       tentacles.forEach(tc=>{ tc.pv.rotation.x = Math.sin(t*1.6+tc.p)*.25; tc.pv.rotation.z = Math.cos(t*1.3+tc.p)*.25; });

@@ -92,7 +92,7 @@ window.KIT = function(opts){
   let raf = 0, ended = false, last = performance.now(), t = 0;
   K.state = {phase:'idle', pt:0};
   K.go = p => { K.state.phase = p; K.state.pt = 0; };
-  K.run = fn => { const loop = now => { raf = requestAnimationFrame(loop); const k = Math.min(6, (now-last)/16.67); last = now; t += k/60; K.state.pt += k/60;
+  K.run = fn => { const loop = now => { raf = requestAnimationFrame(loop); const k = Math.min(6, (now-last)/16.67)*(window.INTRO_SPEED||1); last = now; t += k/60; K.state.pt += k/60;
     fn(k, t); stepPuffs(k); renderer.render(scene, cam); }; raf = requestAnimationFrame(loop); };
   K.finish = () => { if(ended) return; ended = true; stopVoice(); wrap.classList.add('out');
     setTimeout(()=>{ cancelAnimationFrame(raf); removeEventListener('resize', onResize); renderer.dispose(); wrap.remove(); }, 750); opts.done(); };

@@ -125,6 +125,8 @@ const SPECIALS = [
   {k:'star',  e:'⭐', w:2, at:55, n:'a star'},    {k:'rainbow',e:'🌈', w:4, at:75, n:'a rainbow'}
 ];
 const PLATE_COLS = 16;
+/* 3D intro playback speed (1 = original). Bump up or down to taste. */
+var INTRO_SPEED = 1.2;
 function colTops(){ const t = new Array(PLATE_COLS).fill(0); build.forEach(b=>{ for(let i=b.x;i<b.x+b.w;i++) t[i] = Math.max(t[i], b.y+1); }); return t; }
 const buildHeight = () => Math.max(0, ...colTops());
 /* One placed piece as HTML; cell = width of one stud in px */

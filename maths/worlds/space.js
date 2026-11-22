@@ -182,7 +182,7 @@ window.WORLD = {
     }
     function frame(now){
       raf = requestAnimationFrame(frame);
-      const k = Math.min(6, (now - last)/16.67); last = now; t += k/60; phaseT += k/60;
+      const k = Math.min(6, (now-last)/16.67)*(window.INTRO_SPEED||1); last = now; t += k/60; phaseT += k/60;
       opening.forEach((m,i)=>m.rotation.y += .002*k);
       tour.forEach(g=>{ g.userData.spin.rotation.y += .003*k; if(g.userData.clouds) g.userData.clouds.rotation.y += .0045*k; });
       flame.scale.set(1, .85 + Math.random()*.35 + (phase!=='idle'?.8:0), 1);

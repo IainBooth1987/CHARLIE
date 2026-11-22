@@ -184,7 +184,7 @@ window.WORLD = {
 
     function frame(now){
       raf = requestAnimationFrame(frame);
-      const k = Math.min(6, (now-last)/16.67); last = now; t += k/60; phaseT += k/60;
+      const k = Math.min(6, (now-last)/16.67)*(window.INTRO_SPEED||1); last = now; t += k/60; phaseT += k/60;
       // always: wagging tail and swaying ears
       cooper.tail.rotation.y = Math.sin(t*(phase==='idle'?9:14))*.6; cooper.tail.rotation.x = -.3;
       cooper.ears.forEach((e,i)=>{ e.rotation.z = (i?1:-1)*(.12 + Math.sin(t*2.2+i)*.05); });
