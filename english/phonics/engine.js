@@ -83,6 +83,36 @@ const card = (gr, extra='') => `<button class="gtile ${gr.length>1?'multi':''} $
 /* sound buttons: a dot under one letter, a line under two or three letters that make one sound */
 const buttonsHTML = gs => gs.map((gr,i)=>`<span class="gph" data-i="${i}"><span class="glet">${gr}</span><span class="sb ${gr.length>1?'sbline':'sbdot'}"></span></span>`).join('');
 
+
+/* ---------- blending: play the recorded sounds in a row, slowly then quickly (Web Audio for tight timing) ---------- */
+const bufCache = {};
+function soundBuf(gr){
+  const c = window.VOICE_CLIPS || {}; const k = Object.keys(c).find(k=>k.toLowerCase().trim()===('sound '+gr)); if(!k) return Promise.resolve(null);
+  const f = c[k], a = audio(); if(!a) return Promise.resolve(null);
+  if(!bufCache[f]) bufCache[f] = fetch(ASSET_BASE + 'voice/' + f).then(r=>r.arrayBuffer())
+    .then(b=>new Promise((res,rej)=>a.decodeAudioData(b, res, rej))).catch(()=>null);
+  return bufCache[f];
+}
+async function blendPlay(gs, els, wordEl){
+  const a = audio(); const bufs = await Promise.all(gs.map(soundBuf));
+  if(!a || bufs.some(b=>!b)) return 0;
+  let t = a.currentTime + .1; const start = t; const marks = [];
+  const play = (b, at, max) => { const src = a.createBufferSource(), g = a.createGain(), len = Math.min(b.duration, max);
+    src.buffer = b; src.connect(g); g.connect(a.destination);
+    g.gain.setValueAtTime(1, at); g.gain.setValueAtTime(1, at + Math.max(0, len - .07)); g.gain.linearRampToValueAtTime(0, at + len);
+    src.start(at, 0, len + .01); return len; };
+  /* 1) sound talk: each sound on its own */
+  bufs.forEach((b,i)=>{ marks.push([t - start, i]); t += play(b, t, .55) + .22; });
+  t += .35;
+  /* 2) the swoop: same sounds pushed together */
+  const swoopAt = t - start;
+  bufs.forEach((b,i)=>{ t += play(b, t, .3) - .02; });
+  const swoopDur = t - start - swoopAt;
+  marks.forEach(([ms,i])=>later(()=>{ const el = els[i]; el.classList.remove('hit'); void el.offsetWidth; el.classList.add('hit'); }, ms*1000 + 100));
+  later(()=>{ wordEl.classList.add('blended'); const sw = wordEl.querySelector('.swoop'); if(sw){ sw.style.animationDuration = swoopDur+'s'; sw.classList.add('go'); } }, swoopAt*1000 + 100);
+  return (t - start)*1000 + 150;
+}
+
 const LEVELS = BLOCKS.map(b=>({n:b.n, s:b.s, em:b.em}));
 
 /* =========================================================
@@ -121,19 +151,28 @@ function qRead(g, A){
   const opts = shuffle([x, ...others]);
   A.shell(g, `
     <div class="prompt">Read the word. Tap the sound buttons!</div>
-    <div class="word" id="word">${buttonsHTML(x.g)}</div>
+    <div class="word" id="word">${buttonsHTML(x.g)}<span class="swoop"></span></div>
     <button class="brick c-green bigbtn hidden" id="blend">Blend it! ➰</button>
     <div class="picopts hidden" id="opts">${opts.map(o=>`<button class="pic" data-w="${o.w}">${o.e}</button>`).join('')}</div>`);
   A.say('Say each sound, then blend them together. Which picture is it?', {hold:4500});
-  const tapped = new Set();
-  document.querySelectorAll('.gph').forEach(el=>el.onclick=()=>{
+  const els = [...document.querySelectorAll('.gph')], tapped = new Set();
+  const nextPulse = () => { els.forEach(e=>e.classList.remove('next')); const n = els.findIndex((_,i)=>!tapped.has(i)); if(n>=0) els[n].classList.add('next'); };
+  nextPulse();
+  els.forEach(el=>el.onclick=()=>{
     if(g.locked) return; const i = +el.dataset.i; el.classList.remove('hit'); void el.offsetWidth; el.classList.add('hit');
     if(!playSound(x.g[i])) sfx.click();
-    tapped.add(i); if(tapped.size===x.g.length){ $('#blend').classList.remove('hidden'); }
+    tapped.add(i); nextPulse();
+    if(tapped.size===x.g.length){ $('#blend').classList.remove('hidden'); }
   });
-  $('#blend').onclick = ()=>{ sfx.click(); $('#word').classList.add('blended'); $('#opts').classList.remove('hidden'); $('#blend').classList.add('hidden'); A.say('Which picture is it?'); };
+  let blending = false;
+  $('#blend').onclick = async ()=>{
+    if(blending) return; blending = true; sfx.click(); $('#blend').classList.add('hidden'); stopVoice();
+    const ms = await blendPlay(x.g, els, $('#word'));
+    if(!ms) $('#word').classList.add('blended');
+    later(()=>{ $('#opts').classList.remove('hidden'); A.say('Which picture is it?'); blending = false; }, ms || 0);
+  };
   /* children who blend in their head can choose straight away after a short look */
-  later(()=>{ if(!g.locked){ $('#opts').classList.remove('hidden'); } }, 6000);
+  later(()=>{ if(!g.locked && !blending){ $('#opts').classList.remove('hidden'); } }, 6000);
   $('#opts').querySelectorAll('.pic').forEach(b=>b.onclick=()=>{
     if(g.locked) return;
     if(b.dataset.w===x.w){
