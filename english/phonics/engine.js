@@ -118,13 +118,10 @@ async function blendPlay(gs, els, wordEl){
   /* 1) sound talk: each sound on its own, cards apart */
   bufs.forEach((b,i)=>{ marks.push([t - start, i]); t += play(b, t, .6) + .38; });
   t += .25;
-  /* 2) blend: the same sounds run into each other while the cards slide together */
-  const swoopAt = t - start;
-  bufs.forEach((b,i)=>{ const max = STOPS.has(gs[i]) ? .16 : .4;
-    const len = play(b, t, max, i ? .025 : 0); t += len - (i < bufs.length-1 ? .045 : 0); });
-  const swoopDur = t - start - swoopAt;
+  /* 2) the child blends: cards slide together in silence (stitched sounds never sound like the real word) */
+  const swoopAt = t - start, swoopDur = .9; t += swoopDur;
   marks.forEach(([ms,i])=>later(()=>{ const el = els[i]; el.classList.remove('hit'); void el.offsetWidth; el.classList.add('hit','lit'); }, ms*1000 + 100));
-  later(()=>{ wordEl.style.transitionDuration = Math.max(.4, swoopDur)+'s'; wordEl.classList.add('blended');
+  later(()=>{ wordEl.style.transitionDuration = swoopDur+'s'; wordEl.classList.add('blended');
     const sw = wordEl.querySelector('.swoop'); if(sw){ sw.style.animationDuration = swoopDur+'s'; sw.classList.add('go'); } }, swoopAt*1000 + 100);
   return (t - start)*1000 + 250;
 }
@@ -185,7 +182,9 @@ function qRead(g, A){
     if(blending) return; blending = true; sfx.click(); $('#blend').classList.add('hidden'); stopVoice();
     const ms = await blendPlay(x.g, els, $('#word'));
     if(!ms) $('#word').classList.add('blended');
-    later(()=>{ $('#opts').classList.remove('hidden'); A.say('Which picture is it?'); blending = false; }, ms || 0);
+    later(()=>{ A.say('Now you blend it! What is the word?', {hold:2500}); }, ms || 0);
+    later(()=>{ if(hasClip(x.w)) speak(x.w); }, (ms || 0) + 2200);
+    later(()=>{ $('#opts').classList.remove('hidden'); A.say('Which picture is it?'); blending = false; }, (ms || 0) + (hasClip(x.w) ? 3400 : 2600));
   };
   /* children who blend in their head can choose straight away after a short look */
   later(()=>{ if(!g.locked && !blending){ $('#opts').classList.remove('hidden'); } }, 6000);
