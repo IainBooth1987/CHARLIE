@@ -54,6 +54,7 @@ window.VOICE_CLIPS = {
   "sound ear": "phonics/ear.mp3",
   "sound air": "phonics/air.mp3",
   "sound ure": "phonics/ure.mp3",
+  "sound nk": "phonics/nk.mp3",
   "sound th (this)": "phonics/th-voiced.mp3",
   "sound oo (book)": "phonics/oo-short.mp3",
   /* keywords from the sound cards (same voice) */
