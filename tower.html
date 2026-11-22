@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Charlie's Tower — Charlie's Learning</title>
+<link rel="icon" href="assets/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+#app{padding-bottom:30px;}
+.head{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:end;margin-bottom:6px;}
+.head .bubble{margin-bottom:56px;}
+.bank{background:#fff;border-radius:18px;padding:10px 16px;box-shadow:0 5px 0 rgba(0,0,0,.08);text-align:center;min-width:120px;}
+.bank .n{font-size:44px;font-weight:700;line-height:1;}
+.bank .l{font-size:15px;opacity:.8;}
+.tools{background:#fff;border-radius:20px;padding:6px 14px 12px;box-shadow:0 5px 0 rgba(0,0,0,.08);display:flex;flex-wrap:wrap;gap:6px 14px;align-items:flex-end;justify-content:center;margin-bottom:12px;}
+.tools .grp{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap;justify-content:center;}
+.sw{width:52px;height:34px;margin-top:16px;border-radius:7px;outline-offset:3px;}
+.sw::before{left:5px;right:5px;top:-9px;height:10px;background-size:21px 10px;background:radial-gradient(circle at 50% 6px, var(--c) 0 7px, transparent 8px) 0 0/21px 10px repeat-x;filter:none;}
+.sw.on{outline:4px solid var(--navy);}
+.sz{padding:8px 14px 12px;font-size:19px;font-weight:700;}
+.sz.on{outline:4px solid var(--navy);outline-offset:3px;}
+.spc{position:relative;width:58px;height:58px;border-radius:14px;background:#f4f7ff;font-size:34px;display:flex;align-items:center;justify-content:center;margin-top:14px;}
+.spc.on{outline:4px solid var(--navy);outline-offset:2px;background:#fff7cc;}
+.spc.locked{filter:grayscale(1);opacity:.45;}
+.spc.used{opacity:.3;}
+.spc .at{position:absolute;bottom:-4px;right:-6px;background:var(--navy);color:#fff;font-size:12px;border-radius:8px;padding:1px 5px;}
+.sep{width:2px;height:44px;background:#e2e8f0;border-radius:2px;}
+.site{position:relative;margin:0 auto;border-radius:18px 18px 8px 8px;background:linear-gradient(#cfe8ff,#eef7ff 70%);overflow:hidden;
+  box-shadow:0 6px 0 rgba(0,0,0,.08);touch-action:none;cursor:pointer;}
+.sky{position:absolute;inset:0 0 auto 0;}
+.plate{position:absolute;left:0;right:0;bottom:0;background:#16a34a;box-shadow:inset 0 -6px 0 rgba(0,0,0,.18);}
+.plate::before{content:"";position:absolute;left:0;right:0;top:calc(var(--s)*-.2);height:calc(var(--s)*.22);
+  background:radial-gradient(ellipse calc(var(--s)*.3) calc(var(--s)*.22) at 50% 100%, #1fb556 0 96%, transparent 100%);background-size:var(--s) 100%;}
+.ground{position:absolute;left:0;right:0;}
+.hint{position:absolute;left:0;right:0;top:40%;text-align:center;font-size:clamp(20px,3vw,28px);font-weight:600;opacity:.55;pointer-events:none;}
+.acts{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:6px;}
+.acts .bigbtn{font-size:24px;min-width:150px;padding:12px 26px 16px;}
+.height{text-align:center;font-size:18px;margin:8px 0 0;opacity:.8;}
+.cloud{position:absolute;font-size:46px;opacity:.85;animation:drift 40s linear infinite;}
+@keyframes drift{from{transform:translateX(-80px)}to{transform:translateX(calc(100vw))}}
+@media (max-width:620px){ .head{grid-template-columns:auto 1fr;} .bank{grid-column:1/-1;} .head .bubble{margin-bottom:30px;} }
+</style>
+</head>
+<body>
+<div id="app" class="fade-in">
+  <div class="topbar">
+    <a class="brick c-yellow iconbtn" href="index.html" onclick="sfx.click()" aria-label="Home">🏠</a>
+    <h1><span id="nm">Charlie</span>'s Tower</h1>
+    <span class="spacer"></span>
+  </div>
+  <div class="head">
+    <div id="ch"></div>
+    <div class="bubble" id="bub">Let's build!</div>
+    <div class="bank"><div class="n" id="left">0</div><div class="l">bricks to place</div></div>
+  </div>
+  <div class="tools" id="tools"></div>
+  <div class="site" id="site">
+    <div class="cloud" style="top:6%;animation-delay:-8s">☁️</div><div class="cloud" style="top:18%;animation-delay:-26s;font-size:34px">☁️</div>
+    <div class="ground" id="ground"></div>
+    <div class="plate" id="plate"></div>
+    <div class="hint" id="hint"></div>
+  </div>
+  <p class="height" id="ht"></p>
+  <div class="acts">
+    <button class="brick c-orange bigbtn" id="undo">⬅ Undo</button>
+    <a class="brick c-green bigbtn" href="index.html" onclick="sfx.click()" style="text-align:center">Play to win bricks 🎮</a>
+  </div>
+</div>
+<script src="assets/site.js"></script>
+<script>
+/* Charlie's lines — record any of these and add them to assets/voice/manifest.js (exact text) to hear your voice. */
+const LINES = {
+  hello: "Let's build! Tap where you want your brick to go.",
+  empty: "Play a game to win bricks, then come back and build with me!",
+  out:   "That's all your bricks! Play a game to win more.",
+  unlock:"Wow! You unlocked something special!",
+  nice:  ["Great building!", "It's getting bigger!", "Nice one!", "Super stacking!"]
+};
+let colour = 'red', size = 2, special = null, cell = 40, ghost = null, lastLine = '';
+
+function chSay(text, pose='wave', show){
+  $('#bub').innerHTML = show || esc(text);
+  $('#ch').innerHTML = charlieSVG(pose, window.innerWidth < 620 ? 76 : 110);
+  if(text !== lastLine || pose==='cheer'){ speak(text); lastLine = text; }
+}
+const unlocked = () => SPECIALS.filter(s=>tower.length >= s.at);
+const placed = k => build.some(b=>b.k===k);
+
+function renderTools(){
+  const sw = COLS.map(c=>`<button class="brick sw ${c===colour&&!special?'on':''}" style="--c:${CSSCOL[c]}" data-c="${c}" aria-label="${c} brick"></button>`).join('');
+  const sz = [[2,'Small'],[4,'Big']].map(([v,l])=>`<button class="brick c-white sz ${v===size&&!special?'on':''}" data-z="${v}">${l}${v===4?' <small>(2🧱)</small>':''}</button>`).join('');
+  const sp = SPECIALS.map(s=>{
+    const lock = tower.length < s.at, used = placed(s.k);
+    return `<button class="spc ${lock?'locked':''} ${used?'used':''} ${special===s.k?'on':''}" data-k="${s.k}" aria-label="${s.n}">${lock?'🔒':s.e}${lock?`<span class="at">${s.at}</span>`:''}</button>`;
+  }).join('');
+  $('#tools').innerHTML = `<div class="grp">${sw}</div><div class="sep"></div><div class="grp">${sz}</div><div class="sep"></div><div class="grp">${sp}</div>`;
+  $('#tools').querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{ sfx.click(); colour=b.dataset.c; special=null; renderTools(); });
+  $('#tools').querySelectorAll('[data-z]').forEach(b=>b.onclick=()=>{ sfx.click(); size=+b.dataset.z; special=null; renderTools(); });
+  $('#tools').querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{
+    const s = SPECIALS.find(x=>x.k===b.dataset.k);
+    if(tower.length < s.at){ sfx.oops(); chSay(`Keep playing! At ${s.at} bricks you get ${s.n}.`, 'stand'); return; }
+    if(placed(s.k)){ sfx.oops(); chSay(`You've already used ${s.n}. Tap Undo to move it.`, 'stand'); return; }
+    sfx.click(); special = s.k; renderTools();
+  });
+}
+
+function layout(){
+  const site = $('#site'), W = $('#tools').clientWidth;
+  const rows = Math.min(40, Math.max(9, buildHeight() + 3));
+  const availH = Math.max(320, window.innerHeight - site.getBoundingClientRect().top - 120 + window.scrollY*0);
+  cell = Math.floor(Math.min(W / PLATE_COLS, (availH - 30) / (rows*1.2 + .6)));
+  cell = Math.max(14, Math.min(cell, 64));
+  const plateH = Math.round(cell*.6), w = cell*PLATE_COLS, h = Math.round(rows*cell*1.2 + plateH + cell*.4);
+  site.style.width = w+'px'; site.style.height = h+'px';
+  site.style.setProperty('--s', cell+'px');
+  const pl = $('#plate'); pl.style.height = plateH+'px'; pl.style.setProperty('--s', cell+'px');
+  const g = $('#ground'); g.style.bottom = plateH+'px'; g.style.top = '0';
+}
+function render(dropIdx){
+  $('#nm').textContent = settings.name;
+  $('#left').textContent = bricksLeft();
+  layout();
+  $('#ground').innerHTML = build.map((b,i)=>pieceHTML(b, cell, i===dropIdx?'drop':'')).join('');
+  $('#hint').textContent = build.length ? '' : (bricksLeft() ? '👆 Tap here to place a brick' : '');
+  const ht = buildHeight();
+  $('#ht').textContent = ht ? `Your building is ${ht} brick${ht===1?'':'s'} tall · ${build.filter(b=>!b.k).length} bricks used` : '';
+  $('#undo').style.visibility = build.length ? 'visible' : 'hidden';
+}
+
+/* where would a piece of width w land if dropped at column col? */
+function landing(col, w){
+  const x = Math.max(0, Math.min(PLATE_COLS - w, col - Math.floor((w-1)/2)));
+  const t = colTops(); let y = 0; for(let i=x;i<x+w;i++) y = Math.max(y, t[i]);
+  return {x, y};
+}
+function current(){
+  if(special){ const s = SPECIALS.find(x=>x.k===special); return {w:s.w, k:s.k}; }
+  return {w:size, c:colour};
+}
+function canPlace(){
+  if(special) return true;
+  return bricksLeft() >= (size>=4 ? 2 : 1);
+}
+function colAt(e){ const r = $('#ground').getBoundingClientRect(); return Math.floor((e.clientX - r.left) / cell); }
+function showGhost(e){
+  hideGhost(); if(!canPlace()) return;
+  const p = current(), {x,y} = landing(colAt(e), p.w);
+  if(y >= 40) return;
+  $('#ground').insertAdjacentHTML('beforeend', pieceHTML(Object.assign({x,y}, p), cell, 'ghost'));
+  ghost = $('#ground').lastElementChild;
+}
+function hideGhost(){ if(ghost){ ghost.remove(); ghost = null; } }
+
+let downId = null;
+const site = $('#site');
+site.addEventListener('pointerdown', e=>{ downId = e.pointerId; site.setPointerCapture(e.pointerId); showGhost(e); });
+site.addEventListener('pointermove', e=>{ if(downId===e.pointerId || e.pointerType==='mouse') showGhost(e); });
+site.addEventListener('pointerleave', e=>{ if(e.pointerType==='mouse' && downId==null) hideGhost(); });
+site.addEventListener('pointercancel', ()=>{ downId = null; hideGhost(); });
+site.addEventListener('pointerup', e=>{
+  if(downId !== e.pointerId) return; downId = null; hideGhost();
+  if(!canPlace()){ sfx.oops(); chSay(bricksLeft() ? 'A big brick needs 2 bricks. Try a small one!' : LINES.out, 'stand'); return; }
+  const p = current(), {x,y} = landing(colAt(e), p.w);
+  if(y >= 40){ sfx.oops(); chSay('Wow, that is as high as the sky! Build somewhere else.', 'stand'); return; }
+  build.push(Object.assign({x,y}, p)); saveBuild();
+  const wasSpecial = !!special; special = null;
+  sfx.good(); render(build.length-1); renderTools();
+  if(!bricksLeft() && !wasSpecial){ confetti(50); chSay(LINES.out, 'cheer'); }
+  else chSay(pick(LINES.nice), 'cheer');
+});
+$('#undo').onclick = ()=>{ if(!build.length) return; sfx.click(); build.pop(); saveBuild(); render(); renderTools(); chSay(LINES.hello); };
+
+function start(){
+  renderTools(); render();
+  const seen = store.get('seenSpecials', 0), now = unlocked().length;
+  if(now > seen){
+    const s = unlocked()[now-1]; store.set('seenSpecials', now);
+    sfx.win(); confetti(60);
+    chSay(LINES.unlock, 'cheer', `${esc(LINES.unlock)}<br>You can now use ${s.n} ${s.e}`);
+  } else if(!tower.length) chSay(LINES.empty, 'wave');
+  else if(!bricksLeft()) chSay(LINES.out, 'wave');
+  else chSay(LINES.hello, 'wave');
+}
+window.onSettingsClosed = ()=>{ render(); renderTools(); $('#ch').innerHTML = charlieSVG('wave', window.innerWidth < 620 ? 76 : 110); };
+window.addEventListener('resize', ()=>render());
+start(); grownupButton();
+</script>
+</body>
+</html>

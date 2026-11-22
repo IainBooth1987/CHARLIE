@@ -231,23 +231,26 @@ window.GAME = function(SKILL){
     const pct = g.firstTry / ROUND_LEN, stars = pct>=.85 ? 3 : pct>=.55 ? 2 : 1;
     const k = key(g.act, g.lvl);
     progress[k] = Math.max(progress[k]||0, stars);
-    const col = pick(COLS); tower.push(col); save();
+    const got = earnBricks(stars + 1); save();
+    const towerHref = ASSET_BASE.replace(/assets\/$/, '') + 'tower.html';
     sfx.win(); confetti(70);
     ui.innerHTML = topbar('Round complete!', null, `'levels','${g.act}'`) + `<div class="glass stage screen-in"><div class="inter">
       <div class="em">${W.rewardIcon || W.mascot}</div>
       <div class="reward-stars">${[...starsTxt(stars)].map((s,i)=>`<span style="animation-delay:${.3+i*.25}s">${s}</span>`).join('')}</div>
       <h2>Well done, ${esc(settings.name)}!</h2>
       <p>You got <b>${g.firstTry}</b> out of ${ROUND_LEN} first time.</p>
-      <p>New brick for your tower: <span class="mini" style="--c:${CSSCOL[col]};display:inline-block;vertical-align:middle;width:46px;height:24px"></span></p>
+      <div class="guide" style="justify-content:center;margin:6px 0 4px">${charlieSVG('cheer', 74)}
+        <div class="bubble" style="margin-bottom:40px">You won <b>${got.length} bricks</b>!<br><span style="display:inline-flex;gap:6px;margin-top:8px">${got.map(c=>`<span class="mini" style="--c:${CSSCOL[c]};display:inline-block;width:40px;height:22px"></span>`).join('')}</span></div></div>
       <div class="row">
         <button class="brick c-green bigbtn" id="again">Play again 🔁</button>
         <button class="brick c-blue bigbtn" id="other">Other games 🎯</button>
+        <a class="brick c-red bigbtn" href="${towerHref}" style="text-align:center" onclick="sfx.click()">Build my tower 🏗️</a>
         <a class="brick c-yellow bigbtn" href="${HUB}" style="text-align:center">New world 🌍</a>
       </div>
       <p style="margin-top:16px">🧱 Break time! Can you build a real tower with ${stars+2} bricks?</p></div></div>`;
     $('#again').onclick = ()=>{ sfx.click(); go('game',{act:g.act, lvl:g.lvl}); };
     $('#other').onclick = ()=>{ sfx.click(); go('menu'); };
-    say(`${pick(W.cheer)} You earned a new brick for your tower!`, {jump:true, hold:6000});
+    say(`${pick(W.cheer)} You won ${got.length} bricks for your tower!`, {jump:true, hold:6000});
   }
 
   /* ---------- Intro (3D) — plays when a world is picked; skipped when switching skill in the same world ---------- */

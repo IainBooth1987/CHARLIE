@@ -46,7 +46,13 @@
 .acc details[open] summary::after{content:"–";}
 .acc p{margin:0;padding:0 16px 14px;font-size:16px;line-height:1.45;}
 /* tower card: stack the label above the bricks on narrow screens */
-@media (max-width:620px){ .tower-card{flex-direction:column;align-items:flex-start;} }
+.tcard{align-items:flex-end;padding:14px 18px;}
+.tinfo{display:flex;flex-direction:column;gap:4px;flex:none;}
+.tcnt{font-size:16px;opacity:.8;}
+.tbtn{padding:8px 18px 12px;font-size:22px;font-weight:700;align-self:flex-start;}
+.tprev{position:relative;flex:1;height:120px;}
+.tprev .inner{position:absolute;right:0;bottom:0;}
+@media (max-width:620px){ .tcard{flex-wrap:wrap;} .tprev{flex-basis:100%;height:90px;} }
 @media (max-width:620px){ .subjects{grid-template-columns:1fr;} }
 </style>
 </head>
@@ -65,15 +71,18 @@
         <div class="label"><div class="t">English</div><div class="s">Sounds · reading · spelling</div></div>
       </a>
     </div>
-    <div class="tower-card wrap">
-      <div class="lbl">🏗️ <span id="nm1">Charlie</span>'s tower<br><span style="font-size:15px;font-weight:500" id="cnt"></span></div>
-      <div class="tower" id="tower"></div>
-    </div>
+    <a class="tower-card wrap tcard" href="tower.html" onclick="sfx.click()" aria-label="Build Charlie's Tower">
+      <div id="hch"></div>
+      <div class="tinfo"><div class="lbl">🏗️ <span id="nm1">Charlie</span>'s Tower</div><div id="cnt" class="tcnt"></div>
+        <span class="brick c-red tbtn">Build! 🧱</span></div>
+      <div class="tprev" id="tower"></div>
+    </a>
     <details class="grown wrap" id="grown">
       <summary><span>👪 For grown-ups</span><span class="chev">▾</span></summary>
       <div class="acc">
         <details><summary>Foundations first</summary><p>Each subject starts with the building blocks Reception teachers focus on — subitising in maths, and phonics in the same order as school (Little Wandle) for English.</p></details>
         <details><summary>Short, playful rounds</summary><p>Rounds are 8 questions with a "brick break" halfway that gets children moving away from the screen.</p></details>
+        <details><summary>Charlie's Tower</summary><p>Every finished round wins 2–4 bricks (more stars, more bricks). Children choose the colour, size and spot for each brick and build their own tower, castle or town. Special pieces like a door, tree and crown unlock as they earn more.</p></details>
         <details><summary>Talk about it</summary><p>Ask "How did you know?" when they answer — explaining what they saw builds real number sense.</p></details>
         <details><summary>No computer voice</summary><p>Children read the screen with you and say sounds themselves, as they do in class. Settings are behind the 🔒 in the corner — press and hold.</p></details>
       </div>
@@ -85,8 +94,14 @@
 <script>
 function renderHome(){
   $('#nm1').textContent = settings.name;
-  $('#cnt').textContent = tower.length + ' brick' + (tower.length===1?'':'s');
-  $('#tower').innerHTML = towerHTML();
+  const left = bricksLeft();
+  $('#cnt').textContent = !tower.length ? 'Play a game to win bricks!' : left ? `${left} brick${left===1?'':'s'} ready to build` : `${tower.length} bricks built`;
+  $('#hch').innerHTML = charlieSVG('wave', 66);
+  const box = $('#tower'), H = box.clientHeight || 110, rows = Math.max(4, buildHeight());
+  const cell = Math.max(5, Math.min(14, Math.floor(H / (rows*1.2 + .5))));
+  box.innerHTML = build.length
+    ? `<div class="inner" style="width:${cell*PLATE_COLS}px;height:${H}px"><div style="position:absolute;inset:auto 0 0 0;height:${cell*.5}px;background:#16a34a;border-radius:4px"></div><div style="position:absolute;inset:0 0 ${cell*.5}px 0">${buildHTML(cell)}</div></div>`
+    : '';
 }
 window.onSettingsClosed = renderHome;
 renderHome(); grownupButton();
