@@ -41,10 +41,10 @@ const SOUNDPIC = {
   ff:['muffin','🧁','middle'], ll:['bell','🔔','end'], ss:['dress','👗','end'], j:['jellyfish','🪼','start'],
   v:['volcano','🌋','start'], w:['worm','🪱','start'], x:['box','📦','end'], y:['yo-yo','🪀','start'],
   z:['zebra','🦓','start'], zz:['buzz','🐝','end'], qu:['queen','👸','start'], ch:['cheese','🧀','start'],
-  sh:['sheep','🐑','start'], th:['thumb','👍','start'], ng:['ring','💍','end'], nk:['think','🤔','end'],
-  ai:['rain','🌧️','middle'], ee:['tree','🌳','end'], igh:['light','💡','middle'], oa:['boat','⛵','middle'],
-  oo:['moon','🌙','middle'], ar:['car','🚗','end'], or:['fork','🍴','middle'], ur:['turtle','🐢','middle'],
-  ow:['cow','🐄','end'], oi:['coin','🪙','middle'], ear:['ear','👂','start'], air:['chair','🪑','end'], er:['hammer','🔨','end']
+  sh:['shell','🐚','start'], th:['thumb','👍','start'], ng:['ring','💍','end'], nk:['think','🤔','end'],
+  ai:['rain','🌧️','middle'], ee:['green','🟢','middle'], igh:['light','💡','middle'], oa:['boat','⛵','middle'],
+  oo:['food','🍲','middle'], ar:['car','🚗','end'], or:['fork','🍴','middle'], ur:['surf','🏄','middle'],
+  ow:['cow','🐄','end'], oi:['coin','🪙','middle'], ear:['beard','🧔','middle'], air:['chair','🪑','end'], er:['fern','🌿','middle']
 };
 
 /* ---------- decodable words with pictures (split into graphemes) ---------- */
@@ -130,7 +130,7 @@ function qSounds(g, A){
     <div class="prompt">${listen ? 'Which one makes this sound?' : `What sound can you hear ${where} <b>${word}</b>?`}</div>
     <div class="spic">${listen ? '<button class="brick c-blue bigbtn" id="again">🔊 Hear it again</button>' : `<button class="bigpic" id="again" aria-label="${word}">${emo}</button>`}</div>
     <div class="gtiles" id="opts">${opts.map(o=>card(o)).join('')}</div>`);
-  const ask = () => listen ? playSound(gr) : A.say(`${word}… What sound can you hear ${where} ${word}?`, {hold:5000});
+  const ask = () => { if(listen) return playSound(gr); A.say(`${word}… What sound can you hear ${where} ${word}?`, {hold:5000}); if(hasClip(word)) later(()=>speak(word), 250); };
   ask(); $('#again').onclick = ()=>{ sfx.click(); listen ? playSound(gr) : speak(word); };   // silent until recordings are added
   $('#opts').querySelectorAll('.gtile').forEach(b=>b.onclick=()=>{
     if(g.locked) return;
