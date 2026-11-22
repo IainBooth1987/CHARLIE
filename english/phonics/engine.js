@@ -93,24 +93,40 @@ function soundBuf(gr){
     .then(b=>new Promise((res,rej)=>a.decodeAudioData(b, res, rej))).catch(()=>null);
   return bufCache[f];
 }
+/* where the real sound starts and ends inside a clip (clips carry a little silence either side) */
+const trimCache = new WeakMap();
+function trimOf(b){
+  if(trimCache.has(b)) return trimCache.get(b);
+  const d = b.getChannelData(0), n = d.length; let pk = 0;
+  for(let i=0;i<n;i++){ const v = Math.abs(d[i]); if(v>pk) pk = v; }
+  const th = pk * .05; let s = 0, e = n-1;
+  while(s<n && Math.abs(d[s])<th) s++; while(e>s && Math.abs(d[e])<th) e--;
+  const r = {off: Math.max(0, s/b.sampleRate - .01), len: (e-s)/b.sampleRate + .03};
+  trimCache.set(b, r); return r;
+}
+/* quick "bouncy" sounds stay short in a blend; stretchy sounds (vowels, m, s, sh…) are held */
+const STOPS = new Set(['b','c','d','g','k','p','t','ck','j','ch','qu','x']);
 async function blendPlay(gs, els, wordEl){
   const a = audio(); const bufs = await Promise.all(gs.map(soundBuf));
   if(!a || bufs.some(b=>!b)) return 0;
   let t = a.currentTime + .1; const start = t; const marks = [];
-  const play = (b, at, max) => { const src = a.createBufferSource(), g = a.createGain(), len = Math.min(b.duration, max);
-    src.buffer = b; src.connect(g); g.connect(a.destination);
-    g.gain.setValueAtTime(1, at); g.gain.setValueAtTime(1, at + Math.max(0, len - .07)); g.gain.linearRampToValueAtTime(0, at + len);
-    src.start(at, 0, len + .01); return len; };
-  /* 1) sound talk: each sound on its own */
-  bufs.forEach((b,i)=>{ marks.push([t - start, i]); t += play(b, t, .55) + .22; });
-  t += .35;
-  /* 2) the swoop: same sounds pushed together */
+  const play = (b, at, max, fadeIn) => { const tr = trimOf(b), len = Math.min(tr.len, max);
+    const src = a.createBufferSource(), g = a.createGain(); src.buffer = b; src.connect(g); g.connect(a.destination);
+    g.gain.setValueAtTime(fadeIn ? 0 : 1, at); if(fadeIn) g.gain.linearRampToValueAtTime(1, at + fadeIn);
+    g.gain.setValueAtTime(1, at + Math.max(fadeIn||0, len - .06)); g.gain.linearRampToValueAtTime(0, at + len);
+    src.start(at, tr.off, len + .01); return len; };
+  /* 1) sound talk: each sound on its own, cards apart */
+  bufs.forEach((b,i)=>{ marks.push([t - start, i]); t += play(b, t, .6) + .38; });
+  t += .25;
+  /* 2) blend: the same sounds run into each other while the cards slide together */
   const swoopAt = t - start;
-  bufs.forEach((b,i)=>{ t += play(b, t, .3) - .02; });
+  bufs.forEach((b,i)=>{ const max = STOPS.has(gs[i]) ? .16 : .4;
+    const len = play(b, t, max, i ? .025 : 0); t += len - (i < bufs.length-1 ? .045 : 0); });
   const swoopDur = t - start - swoopAt;
-  marks.forEach(([ms,i])=>later(()=>{ const el = els[i]; el.classList.remove('hit'); void el.offsetWidth; el.classList.add('hit'); }, ms*1000 + 100));
-  later(()=>{ wordEl.classList.add('blended'); const sw = wordEl.querySelector('.swoop'); if(sw){ sw.style.animationDuration = swoopDur+'s'; sw.classList.add('go'); } }, swoopAt*1000 + 100);
-  return (t - start)*1000 + 150;
+  marks.forEach(([ms,i])=>later(()=>{ const el = els[i]; el.classList.remove('hit'); void el.offsetWidth; el.classList.add('hit','lit'); }, ms*1000 + 100));
+  later(()=>{ wordEl.style.transitionDuration = Math.max(.4, swoopDur)+'s'; wordEl.classList.add('blended');
+    const sw = wordEl.querySelector('.swoop'); if(sw){ sw.style.animationDuration = swoopDur+'s'; sw.classList.add('go'); } }, swoopAt*1000 + 100);
+  return (t - start)*1000 + 250;
 }
 
 const LEVELS = BLOCKS.map(b=>({n:b.n, s:b.s, em:b.em}));
@@ -155,11 +171,11 @@ function qRead(g, A){
     <button class="brick c-green bigbtn hidden" id="blend">Blend it! ➰</button>
     <div class="picopts hidden" id="opts">${opts.map(o=>`<button class="pic" data-w="${o.w}">${o.e}</button>`).join('')}</div>`);
   A.say('Say each sound, then blend them together. Which picture is it?', {hold:4500});
-  const els = [...document.querySelectorAll('.gph')], tapped = new Set();
+  $('#word').classList.add('cards'); const els = [...document.querySelectorAll('.gph')], tapped = new Set();
   const nextPulse = () => { els.forEach(e=>e.classList.remove('next')); const n = els.findIndex((_,i)=>!tapped.has(i)); if(n>=0) els[n].classList.add('next'); };
   nextPulse();
   els.forEach(el=>el.onclick=()=>{
-    if(g.locked) return; const i = +el.dataset.i; el.classList.remove('hit'); void el.offsetWidth; el.classList.add('hit');
+    if(g.locked) return; const i = +el.dataset.i; el.classList.remove('hit'); void el.offsetWidth; el.classList.add('hit','lit');
     if(!playSound(x.g[i])) sfx.click();
     tapped.add(i); nextPulse();
     if(tapped.size===x.g.length){ $('#blend').classList.remove('hidden'); }

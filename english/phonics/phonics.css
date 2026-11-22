@@ -52,3 +52,21 @@
 @keyframes swoop{0%{width:0;opacity:1}100%{width:calc(100% - 64px);opacity:1}}
 /* things waiting to be revealed (Blend button, picture answers) */
 .bigbtn.hidden,.picopts.hidden{display:none !important;}
+
+/* Read It: each sound is its own card, spaced apart; lit green when said; cards slide together to blend */
+.word.cards{gap:clamp(18px,5vw,54px);background:transparent;box-shadow:none;padding:6px 10px;transition:gap .8s ease-in-out;}
+.word.cards .gph{background:#fff;border-radius:16px;padding:6px clamp(8px,1.6vw,16px) 8px;box-shadow:0 5px 0 rgba(0,0,0,.18);
+  transition:border-radius .6s, box-shadow .6s, background .3s, padding .6s;}
+.word.cards .gph.lit{background:#dcfce7;}
+.word.cards .gph.lit .glet{color:#15803d;}
+.word.cards.blended{gap:0;}
+.word.cards.blended .gph{border-radius:0;box-shadow:0 5px 0 rgba(0,0,0,.18);background:#fff;}
+.word.cards.blended .gph:first-child{border-radius:16px 0 0 16px;}
+.word.cards.blended .gph:nth-last-child(2){border-radius:0 16px 16px 0;}
+.word.cards.blended .gph{padding-left:1px;padding-right:1px;}
+.word.cards.blended .gph:first-child{padding-left:clamp(10px,2vw,18px);}
+.word.cards.blended .gph:nth-last-child(2){padding-right:clamp(10px,2vw,18px);}
+.word.cards.blended .gph .glet{color:#2563eb;}
+.word.cards .swoop{left:18px;}
+.word.cards.blended .swoop.go{animation-name:swoop2;}
+@keyframes swoop2{0%{width:0;opacity:1}100%{width:calc(100% - 50px);opacity:1}}
