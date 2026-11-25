@@ -3,7 +3,7 @@
    Order of sounds and tricky words follows Little Wandle Letters and Sounds Revised (Reception):
      Autumn 1: s a t p · i n m d · g o c k · ck e u r · h b f l        tricky: is I the
      Autumn 2: ff ll ss j · v w x y · z zz qu ch · sh th ng nk         tricky: put pull full as and has his her go no to into she push he of we me be
-     Spring 1: ai ee igh oa · oo ar or · ur ow oi ear · air er         tricky: was you they my by all are sure pure
+     Spring 1: ai ee igh oa · oo ar or · ur ow oi ear · air ure er        tricky: was you they my by all are sure pure
    The four games mirror a phonics lesson: revisit sounds, read (blend), spell (segment), tricky words.
    Pure sounds need a real voice: a clip named "sound s" etc. in assets/voice/manifest.js is played
    when present. There is no computer voice on the site at all.
@@ -19,7 +19,7 @@ const BLOCKS = [
   {n:'Level 3', s:'Autumn 1 · week 5',    em:'h b f l', g:['h','b','f','l'], tricky:['the']},
   {n:'Level 4', s:'Autumn 2 · weeks 1–2', em:'ff ll ss j v w x y', g:['ff','ll','ss','j','v','w','x','y'], tricky:['put','pull','full','as','and','has','his','her']},
   {n:'Level 5', s:'Autumn 2 · weeks 3–4', em:'z zz qu ch sh th ng nk', g:['z','zz','qu','ch','sh','th','ng','nk'], tricky:['go','no','to','into','she','push','he','of','we','me','be']},
-  {n:'Level 6', s:'Spring 1',             em:'ai ee igh oa oo ar or…', g:['ai','ee','igh','oa','oo','ar','or','ur','ow','oi','ear','air','er'], tricky:['was','you','they','my','by','all','are','sure','pure']}
+  {n:'Level 6', s:'Spring 1',             em:'ai ee igh oa oo ar or…', g:['ai','ee','igh','oa','oo','ar','or','ur','ow','oi','ear','air','ure','er'], tricky:['was','you','they','my','by','all','are','sure','pure']}
 ];
 const taught = lvl => BLOCKS.slice(0, lvl+1).flatMap(b=>b.g);
 const newOf  = lvl => BLOCKS[lvl].g;
@@ -44,7 +44,7 @@ const SOUNDPIC = {
   sh:['shell','🐚','start'], th:['thumb','👍','start'], ng:['ring','💍','end'], nk:['think','🤔','end'],
   ai:['rain','🌧️','middle'], ee:['green','🟢','middle'], igh:['light','💡','middle'], oa:['boat','⛵','middle'],
   oo:['food','🍲','middle'], ar:['car','🚗','end'], or:['fork','🍴','middle'], ur:['surf','🏄','middle'],
-  ow:['cow','🐄','end'], oi:['coin','🪙','middle'], ear:['beard','🧔','middle'], air:['chair','🪑','end'], er:['fern','🌿','middle']
+  ow:['cow','🐄','end'], oi:['coin','🪙','middle'], ear:['beard','🧔','middle'], air:['chair','🪑','end'], ure:['pure','💧','end'], er:['fern','🌿','middle']
 };
 
 /* ---------- decodable words with pictures (split into graphemes) ---------- */
@@ -56,7 +56,7 @@ const WORDS = [
   'b-e-ll🔔','d-o-ll🪆','h-i-ll⛰️','j-e-t✈️','v-a-n🚐','w-e-b🕸️','b-o-x📦','f-o-x🦊','s-i-x6️⃣','y-a-k🐃','k-i-ss💋','y-u-m😋',
   'b-u-zz🐝','f-i-zz🥤','qu-i-z❓','ch-i-ck🐤','ch-i-p🍟','sh-e-ll🐚','sh-i-p🚢','f-i-sh🐟','sh-o-p🏪','d-i-sh🍽️','c-a-sh💷','b-a-th🛁','r-i-ng💍','k-i-ng👑','w-i-ng🪽','s-i-ng🎤','b-a-ng💥','w-i-nk😉',
   'n-ai-l💅','s-ai-l⛵','r-ai-n🌧️','sh-ee-p🐑','s-ee-d🌱','f-ee-t🦶','l-igh-t💡','n-igh-t🌃','g-oa-t🐐','c-oa-t🧥','s-oa-p🧼','r-oa-d🛣️',
-  'm-oo-n🌙','b-oo-k📖','h-oo-k🪝','c-ar🚗','sh-ar-k🦈','j-ar🫙','f-or-k🍴','c-or-n🌽','c-ow🐄','ow-l🦉','c-oi-n🪙','ear👂','ch-air🪑','f-air🎡',
+  'm-oo-n🌙','b-oo-k📖','h-oo-k🪝','c-ar🚗','sh-ar-k🦈','j-ar🫙','f-or-k🍴','c-or-n🌽','c-ow🐄','ow-l🦉','c-oi-n🪙','ear👂','ch-air🪑','f-air🎡','s-ur-f🏄','h-ur-t🤕','ch-ur-ch⛪','b-ur-g-er🍔',
   'l-e-tt-er✉️','h-a-mm-er🔨','l-a-dd-er🪜'
 ].map(s=>{ const m = s.match(/^([a-z-]+)(.+)$/); const g = m[1].split('-'); return {w:g.join(''), g, e:m[2]}; });
 /* "tt", "mm", "dd" in Spring 1 week 4 count as already-taught double letters */
