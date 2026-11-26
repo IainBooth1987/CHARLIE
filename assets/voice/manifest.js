@@ -76,4 +76,10 @@ window.VOICE_CLIPS = {
   "surf": "words/surf.mp3",
   "beard": "words/beard.mp3",
   "pure": "words/pure.mp3",
+  /* whole words for Read It, Spell It and Tricky Words (from The Phonics App videos, used with permission) */
+  "dog": "words/dog.mp3",
+  "night": "words/night.mp3",
+  "light": "words/light.mp3",
+  "bell": "words/bell.mp3",
+  "no": "words/no.mp3",
 };
